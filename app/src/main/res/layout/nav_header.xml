@@ -38,9 +38,86 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_marginTop="@dimen/default_grow_margin"
+            android:layout_marginRight="@dimen/default_grow_margin"
             android:layout_width="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_height="wrap_content">
+
+            <ImageView
+                android:visibility="gone"
+                android:id="@+id/iv_message"
+                android:src="@drawable/ic_navigation_header_notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:id="@+id/iv_switch_mode"
+                android:src="@drawable/ic_switch_night"
+                android:layout_marginLeft="@dimen/default_grow_margin"
+                android:layout_marginRight="@dimen/default_grow_margin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll_user"
+            android:layout_below="@id/iv_avatar"
+            android:layout_marginTop="@dimen/default_general_margin"
+            android:layout_marginLeft="@dimen/default_general_margin"
+            android:orientation="vertical"
+            android:background="?attr/selectableItemBackground"
+            android:paddingTop="@dimen/default_tiny_padding"
+            >
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="@dimen/default_tiny_padding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/default_small_text_size"
+                    android:id="@+id/tv_name"
+                    android:text="Admin"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/default_tiny_margin"
+                    android:background="@drawable/bg_level"
+                    android:gravity="center"
+                    android:text="lv 1"
+                    android:textColor="@color/white"
+                    android:textSize="10sp"
+
+                    />
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_tiny_margin"
+                android:padding="@dimen/default_tiny_margin"
+                android:background="@drawable/bg_member"
+                android:text="@string/members"
+                android:textColor="@color/nav_head_roung_text_background"
+                android:textSize="10sp"
+
+                />
+            <TextView
+                android:id="@+id/tv_other_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/default_tiny_margin"
+                android:textColor="@color/white"
+                android:textSize="@dimen/navigation_subtitle_secondary_text_size" />
 
         </LinearLayout>
 

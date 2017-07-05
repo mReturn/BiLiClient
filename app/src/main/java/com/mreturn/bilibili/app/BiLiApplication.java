@@ -4,10 +4,12 @@ import android.app.Application;
 import android.content.Context;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
+import android.support.v7.app.AppCompatDelegate;
 import android.text.TextUtils;
 
 import com.bilibili.magicasakura.utils.ThemeUtils;
 import com.mreturn.bilibili.R;
+import com.mreturn.bilibili.utils.SpUtils;
 import com.mreturn.bilibili.utils.ThemeHelper;
 import com.squareup.leakcanary.LeakCanary;
 
@@ -31,6 +33,12 @@ public class BiLiApplication extends Application implements ThemeUtils.switchCol
         //初始化LeakCanary
         if (!LeakCanary.isInAnalyzerProcess(this))
             LeakCanary.install(this);
+
+        //夜间模式
+        boolean isNight = (boolean) SpUtils.get(this,Constant.IS_NIGHT_MODE,false);
+        if (isNight){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
     }
 
     public static BiLiApplication getInstance() {

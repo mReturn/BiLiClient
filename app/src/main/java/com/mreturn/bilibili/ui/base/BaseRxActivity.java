@@ -1,4 +1,4 @@
-package com.mreturn.bilibili.ui;
+package com.mreturn.bilibili.ui.base;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -6,6 +6,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.bilibili.magicasakura.utils.ThemeUtils;
 import com.mreturn.bilibili.R;
@@ -29,10 +31,10 @@ public abstract class BaseRxActivity extends RxAppCompatActivity implements Them
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         bind = ButterKnife.bind(this);
-        //初始化页面
-        initView(savedInstanceState);
         //初始化ToolBar
         initToolBar();
+        //初始化页面
+        initView(savedInstanceState);
     }
 
     @Override
@@ -62,6 +64,20 @@ public abstract class BaseRxActivity extends RxAppCompatActivity implements Them
     }
 
     @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(ThemeUtils.getColorById(this,R.color.theme_color_primary_dark));
+            ActivityManager.TaskDescription taskDescription = new ActivityManager.TaskDescription(
+                    null,null,ThemeUtils.getThemeAttrColor(this,android.R.attr.colorPrimary));
+            setTaskDescription(taskDescription);
+        }
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         bind.unbind();
@@ -70,7 +86,7 @@ public abstract class BaseRxActivity extends RxAppCompatActivity implements Them
     //获取界面布局id
     protected abstract int getLayoutId();
 
-    protected abstract void initView(Bundle savedInstanceState);
-
     protected abstract void initToolBar();
+
+    protected abstract void initView(Bundle savedInstanceState);
 }

@@ -1,11 +1,10 @@
-package com.mreturn.bilibili.ui.splash;
+package com.mreturn.bilibili.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.mreturn.bilibili.R;
-import com.mreturn.bilibili.ui.main.MainActivity;
 import com.mreturn.bilibili.utils.SystemUiUtil;
 import com.trello.rxlifecycle2.components.RxActivity;
 
@@ -39,7 +38,7 @@ public class SplashActivity extends RxActivity {
         Observable.timer(SPLASH_TIME, TimeUnit.SECONDS)
                 .compose(this.<Long>bindToLifecycle())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(aLong -> {
+                .subscribe( to -> {
                     toMain();
                 });
     }
