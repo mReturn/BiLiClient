@@ -19,8 +19,8 @@ import butterknife.Unbinder;
 public abstract class BaseLazyFragment extends Fragment {
 
     View parentView;
-    boolean isPrepared; //是否初始化完成
-    boolean isVisible;  //是否可见
+    protected boolean isPrepared; //是否初始化完成
+    protected boolean isVisible;  //是否可见
     Unbinder bind;
 
     @Override
@@ -66,10 +66,10 @@ public abstract class BaseLazyFragment extends Fragment {
         }
     }
 
-    private void lazyLoad() {
+    protected void lazyLoad() {
     }
 
-    private void onInvisible() {
+    protected void onInvisible() {
     }
 
 

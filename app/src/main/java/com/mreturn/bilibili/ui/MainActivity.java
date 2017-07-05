@@ -23,8 +23,8 @@ import butterknife.BindView;
 public class MainActivity extends BaseRxActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    @BindView(R.id.nav_main)
-    NavigationView navMain;
+    @BindView(R.id.nav_home)
+    NavigationView navHome;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
 
@@ -62,8 +62,8 @@ public class MainActivity extends BaseRxActivity implements NavigationView.OnNav
 
     //初始化左侧菜单栏
     private void intNavView() {
-        navMain.setNavigationItemSelectedListener(this);
-        View navHeadView = navMain.getHeaderView(0);
+        navHome.setNavigationItemSelectedListener(this);
+        View navHeadView = navHome.getHeaderView(0);
         ImageView ivSwitchMode = (ImageView) navHeadView.findViewById(R.id.iv_switch_mode);
         ivSwitchMode.setOnClickListener(a -> switchThemeMode(ivSwitchMode));
         boolean isNight = (boolean) SpUtils.get(this, Constant.IS_NIGHT_MODE, false);
