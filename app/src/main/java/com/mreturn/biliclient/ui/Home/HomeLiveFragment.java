@@ -2,20 +2,21 @@ package com.mreturn.biliclient.ui.Home;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.mreturn.biliclient.R;
+import com.mreturn.biliclient.adapter.HomeLiveAdapter;
+import com.mreturn.biliclient.api.CustomObserver;
 import com.mreturn.biliclient.api.RetrofitHelper;
 import com.mreturn.biliclient.bean.LiveAppIndexInfo;
 import com.mreturn.biliclient.ui.base.BaseLazyFragment;
-import com.mreturn.biliclient.utils.ToastUtil;
 import com.mreturn.biliclient.widget.CustomEmptyView;
 
 import butterknife.BindView;
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -31,6 +32,8 @@ public class HomeLiveFragment extends BaseLazyFragment {
     CustomEmptyView emptyView;
     @BindView(R.id.swip_refresh_layout)
     SwipeRefreshLayout swipRefreshLayout;
+
+    HomeLiveAdapter liveAdapter;
 
     @Override
     protected int getLayoutId() {
@@ -54,11 +57,26 @@ public class HomeLiveFragment extends BaseLazyFragment {
 
     private void initRefreshLayout() {
         swipRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        swipRefreshLayout.setOnRefreshListener(this ::getData);
-        swipRefreshLayout.post( () ->{
+        swipRefreshLayout.setOnRefreshListener(this::getData);
+        swipRefreshLayout.post(() -> {
             swipRefreshLayout.setRefreshing(true);
             getData();
         });
+    }
+
+    private void initRecycleView() {
+        liveAdapter = new HomeLiveAdapter(getActivity());
+        recycleView.setAdapter(liveAdapter);
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),12);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+
+                return liveAdapter.getSpanSize(position);
+            }
+        });
+        recycleView.setLayoutManager(layoutManager);
     }
 
     private void getData() {
@@ -66,30 +84,21 @@ public class HomeLiveFragment extends BaseLazyFragment {
                 .getLiveAppIndex()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<LiveAppIndexInfo>() {
+                .subscribe(new CustomObserver<LiveAppIndexInfo>() {
                     @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-
+                    protected void onSuccess(LiveAppIndexInfo liveAppIndexInfo) {
+                        swipRefreshLayout.setRefreshing(false);
+                        emptyView.setVisibility(View.GONE);
+                        liveAdapter.setLiveInfo(liveAppIndexInfo);
+                        liveAdapter.notifyDataSetChanged();
                     }
 
                     @Override
-                    public void onNext(@NonNull LiveAppIndexInfo liveAppIndexInfo) {
-                        ToastUtil.show("成功");
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        ToastUtil.show("失败");
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
+                    protected void onFailure(Throwable e) {
+                        swipRefreshLayout.setRefreshing(false);
+                        emptyView.setVisibility(View.VISIBLE);
                     }
                 });
     }
 
-    private void initRecycleView() {
-    }
 }
