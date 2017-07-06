@@ -50,14 +50,15 @@ public class MainActivity extends BaseRxActivity implements NavigationView.OnNav
     }
 
     private void initFragments() {
-        mHomeFragment = new HomeFragment();
-
-        //显示主界面
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.fl_main, mHomeFragment)
-                .show(mHomeFragment)
-                .commit();
+        if (mHomeFragment == null){
+            mHomeFragment = new HomeFragment();
+            //显示主界面
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.fl_main, mHomeFragment)
+                    .show(mHomeFragment)
+                    .commit();
+        }
     }
 
     //初始化左侧菜单栏

@@ -53,8 +53,8 @@ public class HomeLiveAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         if (liveAppIndexInfo.getData().getEntranceIcons() != null) {
             entranceIcons.clear();
             entranceIcons.addAll(liveAppIndexInfo.getData().getEntranceIcons());
-            if (entranceIcons.size()>4)
-                entranceIcons = entranceIcons.subList(0,4);
+//            if (entranceIcons.size()>4)
+//                entranceIcons = entranceIcons.subList(0,4);
             System.out.println("entrance: "+entranceIcons.size());
 
         }
@@ -97,6 +97,9 @@ public class HomeLiveAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 ImageView ivEntrance = holder.getImageView(R.id.iv_entrance);
                 holder.setText(R.id.tv_entrance, entranceIcons.get(position-1).getName());
                 ImageLoader.display(ivEntrance, entranceIcons.get(position-1).getEntrance_icon().getSrc());
+                holder.setClickListener(R.id.ll_entrance,view ->
+                        ToastUtil.show(entranceIcons.get(position-1).getName())
+                );
                 break;
             case TYPE_PARTITION:
                 LiveAppIndexInfo.DataBean.PartitionsBean.PartitionBean partition = liveAppIndexInfo.
@@ -110,23 +113,26 @@ public class HomeLiveAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 ForegroundColorSpan fcs = new ForegroundColorSpan(context.getResources()
                         .getColor(R.color.pink_text_color));
                 strBuilder.setSpan(fcs,2,strBuilder.length()-3, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
                 tvParttionCount.setText(strBuilder);
+                holder.setClickListener(R.id.ll_partition,view ->
+                        ToastUtil.show(partition.getName())
+                );
                 break;
             case TYPE_LIVE_ITEM:
-                int itemPos = getItemPosition(position);
-                int livePos = position - 1 - entranceIcons.size() - getItemPosition(position) * 5;
+//                int itemPos = getItemPosition(position-1);
+//                int livePos = position  - 2-entranceIcons.size() - getItemPosition(position-1) * 5;
+//                System.out.println("itemPos  "+position +"  - "+itemPos+"  - "+livePos);
                 LiveAppIndexInfo.DataBean.PartitionsBean.LivesBean livesBean = liveAppIndexInfo.
-                        getData().getPartitions().get(getItemPosition(position)).getLives()
-                        .get(position - 1 - entranceIcons.size() - getItemPosition(position) * 5);
+                        getData().getPartitions().get(getItemPosition(position-1)).getLives()
+                        .get(position - 2 - entranceIcons.size() - getItemPosition(position-1) * 5);
                 ImageLoader.display(holder.getImageView(R.id.iv_live_cover),livesBean.getCover().getSrc());
                 ImageLoader.display(holder.getImageView(R.id.civ_live_avatar),livesBean.getCover().getSrc());
                 holder.setText(R.id.tv_live_title,livesBean.getTitle());
                 holder.setText(R.id.tv_live_name,livesBean.getOwner().getName());
                 holder.setText(R.id.tv_live_count,livesBean.getOnline()+"");
-                holder.setClickListener(R.id.item_root,v -> {
-                    ToastUtil.show("live");
-                });
+                holder.setClickListener(R.id.cv_live_item, view ->
+                        ToastUtil.show(livesBean.getTitle())
+                );
                 break;
             default:
                 break;
@@ -150,8 +156,9 @@ public class HomeLiveAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0)
+        if (position == 0){
             return TYPE_BANNER;
+        }
         position -= 1;
         if (position < entranceIcons.size()) {
             return TYPE_ENTRANCE;
@@ -170,13 +177,13 @@ public class HomeLiveAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public int getSpanSize(int position) {
         switch (getItemViewType(position)){
             case TYPE_ENTRANCE:
-                return 3;
+                return 2;
             case TYPE_LIVE_ITEM:
-                return 6;
+                return 5;
             case TYPE_PARTITION:
-                return 12;
+                return 10;
             case TYPE_BANNER:
-                return 12;
+                return 10;
             default:
                 return 0;
         }

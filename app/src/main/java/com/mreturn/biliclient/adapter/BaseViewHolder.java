@@ -50,7 +50,8 @@ public class BaseViewHolder extends RecyclerView.ViewHolder{
     }
 
     public void setClickListener(int viewId, View.OnClickListener listener){
-        getView(viewId).setOnClickListener(listener);
+        View view = getView(viewId);
+        view.setOnClickListener(listener);
 
     }
 

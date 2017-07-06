@@ -67,7 +67,7 @@ public class HomeLiveFragment extends BaseLazyFragment {
     private void initRecycleView() {
         liveAdapter = new HomeLiveAdapter(getActivity());
         recycleView.setAdapter(liveAdapter);
-        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),12);
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),10);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
