@@ -3,10 +3,11 @@ package com.mreturn.biliclient.ui.base;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -16,7 +17,7 @@ import butterknife.Unbinder;
  * on 2017/7/5.
  */
 
-public abstract class BaseLazyFragment extends Fragment {
+public abstract class BaseLazyFragment extends RxFragment {
 
     View parentView;
     protected boolean isPrepared; //是否初始化完成

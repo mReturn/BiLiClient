@@ -1,4 +1,4 @@
-package com.mreturn.biliclient.adapter;
+package com.mreturn.biliclient.adapter.home;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.mreturn.biliclient.R;
 import com.mreturn.biliclient.ui.Home.HomeLiveFragment;
+import com.mreturn.biliclient.ui.Home.HomeRecommendFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,19 +19,22 @@ import java.util.List;
 
 public class HomePagerAdapter extends FragmentPagerAdapter {
 
-    private String [] titles;
+    private String[] titles;
 
     private List<Fragment> fragments;
 
-    public HomePagerAdapter(Context context,FragmentManager fm) {
+    public HomePagerAdapter(Context context, FragmentManager fm) {
         super(fm);
         titles = context.getResources().getStringArray(R.array.sections);
         fragments = new ArrayList<>();
-        for (int i = 0 ;i<titles.length;i++){
-            fragments.add(new HomeLiveFragment());
+        for (int i = 0; i < titles.length; i++) {
+            if (i == 1) {
+                fragments.add(new HomeRecommendFragment());
+            } else {
+                fragments.add(new HomeLiveFragment());
+            }
         }
     }
-
 
 
     @Override

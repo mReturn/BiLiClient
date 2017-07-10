@@ -1,4 +1,4 @@
-package com.mreturn.biliclient.adapter;
+package com.mreturn.biliclient.adapter.home;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mreturn.biliclient.R;
+import com.mreturn.biliclient.adapter.BaseViewHolder;
 import com.mreturn.biliclient.bean.LiveAppIndexInfo;
 import com.mreturn.biliclient.utils.ImageLoader;
 import com.mreturn.biliclient.utils.ToastUtil;
@@ -53,8 +54,8 @@ public class HomeLiveAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         if (liveAppIndexInfo.getData().getEntranceIcons() != null) {
             entranceIcons.clear();
             entranceIcons.addAll(liveAppIndexInfo.getData().getEntranceIcons());
-//            if (entranceIcons.size()>4)
-//                entranceIcons = entranceIcons.subList(0,4);
+            if (entranceIcons.size()>5)
+                entranceIcons = entranceIcons.subList(0,5);
             System.out.println("entrance: "+entranceIcons.size());
 
         }
@@ -125,8 +126,8 @@ public class HomeLiveAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 LiveAppIndexInfo.DataBean.PartitionsBean.LivesBean livesBean = liveAppIndexInfo.
                         getData().getPartitions().get(getItemPosition(position-1)).getLives()
                         .get(position - 2 - entranceIcons.size() - getItemPosition(position-1) * 5);
-                ImageLoader.display(holder.getImageView(R.id.iv_live_cover),livesBean.getCover().getSrc());
-                ImageLoader.display(holder.getImageView(R.id.civ_live_avatar),livesBean.getCover().getSrc());
+                ImageLoader.display(holder.getImageView(R.id.iv_live_cover),livesBean.getCover().getSrc(),R.drawable.bili_default_image_tv);
+                ImageLoader.display(holder.getImageView(R.id.civ_live_avatar),livesBean.getCover().getSrc(),R.drawable.ico_user_default);
                 holder.setText(R.id.tv_live_title,livesBean.getTitle());
                 holder.setText(R.id.tv_live_name,livesBean.getOwner().getName());
                 holder.setText(R.id.tv_live_count,livesBean.getOnline()+"");

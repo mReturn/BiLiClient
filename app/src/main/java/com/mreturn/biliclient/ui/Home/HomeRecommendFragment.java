@@ -2,29 +2,33 @@ package com.mreturn.biliclient.ui.Home;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.mreturn.biliclient.R;
-import com.mreturn.biliclient.adapter.home.HomeLiveAdapter;
+import com.mreturn.biliclient.adapter.home.RecommendBannerInfo;
+import com.mreturn.biliclient.adapter.home.RecommendInfo;
 import com.mreturn.biliclient.api.CustomObserver;
 import com.mreturn.biliclient.api.RetrofitHelper;
-import com.mreturn.biliclient.bean.LiveAppIndexInfo;
 import com.mreturn.biliclient.ui.base.BaseLazyFragment;
 import com.mreturn.biliclient.widget.CustomEmptyView;
+import com.mreturn.biliclient.widget.banner.BannerBean;
+
+import java.util.List;
 
 import butterknife.BindView;
+import io.reactivex.ObservableSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by mReturn
- * on 2017/7/5.
+ * on 2017/7/10.
  */
 
-public class HomeLiveFragment extends BaseLazyFragment {
+public class HomeRecommendFragment extends BaseLazyFragment {
 
     @BindView(R.id.recycle_view)
     RecyclerView recycleView;
@@ -32,8 +36,6 @@ public class HomeLiveFragment extends BaseLazyFragment {
     CustomEmptyView emptyView;
     @BindView(R.id.swip_refresh_layout)
     SwipeRefreshLayout swipRefreshLayout;
-
-    HomeLiveAdapter liveAdapter;
 
     @Override
     protected int getLayoutId() {
@@ -51,47 +53,47 @@ public class HomeLiveFragment extends BaseLazyFragment {
         if (!isPrepared || !isVisible)
             return;
         initRefreshLayout();
-        initRecycleView();
+        initRecyclerView();
         isPrepared = false;
     }
 
     private void initRefreshLayout() {
         swipRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        swipRefreshLayout.setOnRefreshListener(this::getData);
         swipRefreshLayout.post(() -> {
             swipRefreshLayout.setRefreshing(true);
             getData();
         });
+
+        swipRefreshLayout.setOnRefreshListener(() -> {
+            getData();
+        });
+
     }
 
-    private void initRecycleView() {
-        liveAdapter = new HomeLiveAdapter(getActivity());
-        recycleView.setAdapter(liveAdapter);
-        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),10);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int position) {
+    private void initRecyclerView() {
 
-                return liveAdapter.getSpanSize(position);
-            }
-        });
-        recycleView.setLayoutManager(layoutManager);
     }
 
     private void getData() {
-        RetrofitHelper.getLiveApi()
-                .getLiveAppIndex()
+        RetrofitHelper.getAppApi()
+                .getRecommendedBannerInfo()
                 .compose(bindToLifecycle())
+                .map(RecommendBannerInfo::getData)
+                .flatMap(new Function<List<BannerBean>, ObservableSource<RecommendInfo>>() {
+                    @Override
+                    public ObservableSource<RecommendInfo> apply(@NonNull List<BannerBean> bannerBeen) throws Exception {
+                        return RetrofitHelper.getAppApi().getRecommendedInfo();
+                    }
+                })
+                .compose(bindToLifecycle())
+                .map(RecommendInfo::getResult)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new CustomObserver<LiveAppIndexInfo>() {
+                .subscribe(new CustomObserver<List<RecommendInfo.ResultBean>>() {
                     @Override
-                    protected void onSuccess(LiveAppIndexInfo liveAppIndexInfo) {
+                    protected void onSuccess(List<RecommendInfo.ResultBean> resultBeen) {
                         swipRefreshLayout.setRefreshing(false);
                         emptyView.setVisibility(View.GONE);
-                        liveAdapter.setLiveInfo(liveAppIndexInfo);
-                        liveAdapter.notifyDataSetChanged();
                     }
 
                     @Override
@@ -101,5 +103,4 @@ public class HomeLiveFragment extends BaseLazyFragment {
                     }
                 });
     }
-
 }

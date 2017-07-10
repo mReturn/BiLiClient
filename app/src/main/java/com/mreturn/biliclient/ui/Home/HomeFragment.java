@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.mreturn.biliclient.R;
-import com.mreturn.biliclient.adapter.HomePagerAdapter;
+import com.mreturn.biliclient.adapter.home.HomePagerAdapter;
 import com.mreturn.biliclient.ui.MainActivity;
 import com.mreturn.biliclient.ui.base.BaseLazyFragment;
 import com.mreturn.biliclient.utils.ToastUtil;

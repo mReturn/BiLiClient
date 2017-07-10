@@ -1,6 +1,7 @@
 package com.mreturn.biliclient.api;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
+import com.mreturn.biliclient.api.service.AppService;
 import com.mreturn.biliclient.api.service.LiveService;
 import com.mreturn.biliclient.app.BiLiApplication;
 import com.mreturn.biliclient.app.Constant;
@@ -35,6 +36,10 @@ public class RetrofitHelper {
 
     public static LiveService getLiveApi() {
         return creatApi(LiveService.class, Constant.LIVE_BASE_URL);
+    }
+
+    public static AppService getAppApi(){
+        return creatApi(AppService.class,Constant.APP_BASE_URL);
     }
 
 
