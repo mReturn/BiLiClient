@@ -1,10 +1,7 @@
 package com.mreturn.biliclient.ui.Home;
 
-import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.mreturn.biliclient.R;
@@ -12,10 +9,7 @@ import com.mreturn.biliclient.adapter.home.HomeLiveAdapter;
 import com.mreturn.biliclient.api.CustomObserver;
 import com.mreturn.biliclient.api.RetrofitHelper;
 import com.mreturn.biliclient.bean.LiveAppIndexInfo;
-import com.mreturn.biliclient.ui.base.BaseLazyFragment;
-import com.mreturn.biliclient.widget.CustomEmptyView;
 
-import butterknife.BindView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -24,38 +18,12 @@ import io.reactivex.schedulers.Schedulers;
  * on 2017/7/5.
  */
 
-public class HomeLiveFragment extends BaseLazyFragment {
-
-    @BindView(R.id.recycle_view)
-    RecyclerView recycleView;
-    @BindView(R.id.empty_view)
-    CustomEmptyView emptyView;
-    @BindView(R.id.swip_refresh_layout)
-    SwipeRefreshLayout swipRefreshLayout;
+public class HomeLiveFragment extends BaseHomeContentFragment {
 
     HomeLiveAdapter liveAdapter;
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_home_live;
-    }
-
-    @Override
-    protected void initView(Bundle state) {
-        isPrepared = true;
-        lazyLoad();
-    }
-
-    @Override
-    protected void lazyLoad() {
-        if (!isPrepared || !isVisible)
-            return;
-        initRefreshLayout();
-        initRecycleView();
-        isPrepared = false;
-    }
-
-    private void initRefreshLayout() {
+    protected void initRefreshLayout() {
         swipRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         swipRefreshLayout.setOnRefreshListener(this::getData);
         swipRefreshLayout.post(() -> {
@@ -64,9 +32,9 @@ public class HomeLiveFragment extends BaseLazyFragment {
         });
     }
 
-    private void initRecycleView() {
+    @Override
+    protected void initRecyclerView() {
         liveAdapter = new HomeLiveAdapter(getActivity());
-        recycleView.setAdapter(liveAdapter);
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(),10);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -77,6 +45,9 @@ public class HomeLiveFragment extends BaseLazyFragment {
             }
         });
         recycleView.setLayoutManager(layoutManager);
+        recycleView.setHasFixedSize(true);
+        recycleView.setAdapter(liveAdapter);
+
     }
 
     private void getData() {
@@ -90,6 +61,7 @@ public class HomeLiveFragment extends BaseLazyFragment {
                     protected void onSuccess(LiveAppIndexInfo liveAppIndexInfo) {
                         swipRefreshLayout.setRefreshing(false);
                         emptyView.setVisibility(View.GONE);
+                        recycleView.setVisibility(View.VISIBLE);
                         liveAdapter.setLiveInfo(liveAppIndexInfo);
                         liveAdapter.notifyDataSetChanged();
                     }
@@ -98,6 +70,7 @@ public class HomeLiveFragment extends BaseLazyFragment {
                     protected void onFailure(Throwable e) {
                         swipRefreshLayout.setRefreshing(false);
                         emptyView.setVisibility(View.VISIBLE);
+                        recycleView.setVisibility(View.GONE);
                     }
                 });
     }

@@ -1,4 +1,4 @@
-package com.mreturn.biliclient.adapter.section;
+package com.mreturn.biliclient.adapter.section.base;
 
 /**
  * Created by mReturn

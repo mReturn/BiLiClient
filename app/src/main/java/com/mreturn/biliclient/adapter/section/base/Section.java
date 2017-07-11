@@ -1,4 +1,4 @@
-package com.mreturn.biliclient.adapter.section;
+package com.mreturn.biliclient.adapter.section.base;
 
 import android.support.annotation.LayoutRes;
 
@@ -34,8 +34,6 @@ public abstract class Section {
 
 
     //constructor
-
-
     public Section() {
     }
 
@@ -56,39 +54,6 @@ public abstract class Section {
         this.footerResourceId = footerResourceId;
         hasFooter = true;
     }
-
-    //bind view
-    public final void bindContentView(BaseViewHolder holder, int position) {
-        switch (state) {
-            case LOADING:
-                bindLoadingView(holder);
-                break;
-            case LOADED:
-                bindItemView(holder, position);
-                break;
-            case FAILED:
-                bindFailedView(holder);
-                break;
-            default:
-                throw new IllegalStateException("illegal state");
-        }
-    }
-
-    private void bindLoadingView(BaseViewHolder holder) {
-    }
-
-    public static void bindItemView(BaseViewHolder holder, int position) {
-    }
-
-    public void bindFailedView(BaseViewHolder holder) {
-    }
-
-    public void bindHeaderView(BaseViewHolder holder) {
-    }
-
-    public void bindFooterView(BaseViewHolder holder) {
-    }
-
 
     //item count
     public final int getSectionItemsCount() {
@@ -111,6 +76,38 @@ public abstract class Section {
     }
 
     protected abstract int getContentItemsCount();
+
+    //bind view
+    public final void bindContentView(BaseViewHolder holder, int position) {
+        switch (state) {
+            case LOADING:
+                bindLoadingView(holder);
+                break;
+            case LOADED:
+                bindItemView(holder, position);
+                break;
+            case FAILED:
+                bindFailedView(holder);
+                break;
+            default:
+                throw new IllegalStateException("illegal state");
+        }
+    }
+
+    public void bindLoadingView(BaseViewHolder holder) {
+    }
+
+    public abstract void bindItemView(BaseViewHolder holder, int position);
+
+    public void bindFailedView(BaseViewHolder holder) {
+    }
+
+    public void bindHeaderView(BaseViewHolder holder) {
+    }
+
+
+    public void bindFooterView(BaseViewHolder holder) {
+    }
 
 
     // get & set

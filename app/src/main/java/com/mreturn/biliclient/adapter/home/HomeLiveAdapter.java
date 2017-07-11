@@ -70,7 +70,7 @@ public class HomeLiveAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         View view = null;
         switch (viewType) {
             case TYPE_BANNER:
-                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_live_banner, null);
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_banner_view, null);
                 break;
             case TYPE_ENTRANCE:
                 view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_live_entrance, null);
@@ -91,7 +91,7 @@ public class HomeLiveAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     public void onBindViewHolder(BaseViewHolder holder, int position) {
         switch (getItemViewType(position)) {
             case TYPE_BANNER:
-                BannerView bannerView = holder.getView(R.id.live_banner);
+                BannerView bannerView = holder.getView(R.id.banner_view);
                 bannerView.delayTime(5).build(bannerlist);
                 break;
             case TYPE_ENTRANCE:

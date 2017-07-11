@@ -68,7 +68,7 @@
             android:layout_marginTop="@dimen/default_general_margin"
             android:layout_marginLeft="@dimen/default_general_margin"
             android:orientation="vertical"
-            android:background="?attr/selectableItemBackground"
+            android:background="@android:color/transparent"
             android:paddingTop="@dimen/default_tiny_padding"
             >
 

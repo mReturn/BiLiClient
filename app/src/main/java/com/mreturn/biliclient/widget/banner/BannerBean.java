@@ -1,5 +1,7 @@
 package com.mreturn.biliclient.widget.banner;
 
+import android.text.TextUtils;
+
 public class BannerBean {
   private String title;
   private String img;
@@ -61,6 +63,9 @@ public class BannerBean {
   }
 
   public String getImg() {
+    if (TextUtils.isEmpty(img)){
+      return image;
+    }
     return img;
   }
 

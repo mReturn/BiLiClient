@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.mreturn.biliclient.R;
+import com.mreturn.biliclient.ui.Home.HomeBangumiFragment;
 import com.mreturn.biliclient.ui.Home.HomeLiveFragment;
 import com.mreturn.biliclient.ui.Home.HomeRecommendFragment;
 
@@ -28,10 +29,16 @@ public class HomePagerAdapter extends FragmentPagerAdapter {
         titles = context.getResources().getStringArray(R.array.sections);
         fragments = new ArrayList<>();
         for (int i = 0; i < titles.length; i++) {
-            if (i == 1) {
-                fragments.add(new HomeRecommendFragment());
-            } else {
-                fragments.add(new HomeLiveFragment());
+            switch (i){
+                case 1:
+                    fragments.add(new HomeRecommendFragment());
+                    break;
+                case 2:
+                    fragments.add(new HomeBangumiFragment());
+                    break;
+                default:
+                    fragments.add(new HomeLiveFragment());
+                    break;
             }
         }
     }
