@@ -17,7 +17,7 @@ import butterknife.Unbinder;
  * on 2017/7/5.
  */
 
-public abstract class BaseLazyFragment extends RxFragment {
+public abstract class BaseRxLazyFragment extends RxFragment {
 
     View parentView;
     protected boolean isPrepared; //是否初始化完成

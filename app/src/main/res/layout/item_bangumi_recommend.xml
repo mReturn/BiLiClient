@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/tv_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:drawableLeft="@drawable/ic_tuijian"
+        android:drawablePadding="@dimen/default_general_margin"
+        android:gravity="center"
+        android:padding="@dimen/default_general_margin"
+        android:text="@string/bangumi_recommend"
+        android:textColor="@color/font_normal"
+        android:textSize="@dimen/default_small_text_size"/>
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/card_margin"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/card_view_background"
+        app:cardCornerRadius="@dimen/card_corner_radius"
+        app:cardElevation="@dimen/card_elevation">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <FrameLayout
+                android:id="@+id/item_image_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/bangumi_recommend_image_height">
+
+
+                <ImageView
+                    android:id="@+id/iv_cover"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="center"/>
+
+                <ImageView
+                    android:id="@+id/iv_new"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginRight="@dimen/default_grow_margin"
+                    android:layout_marginTop="-1dp"
+                    android:background="@drawable/tv_new_bg"
+                    android:padding="@dimen/default_tiny_padding"
+                    android:src="@drawable/ic_new_text"/>
+
+            </FrameLayout>
+
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_image_layout"
+                android:padding="@dimen/default_general_margin"
+                android:textColor="@color/font_normal"
+                android:textSize="@dimen/default_small_text_size"/>
+
+
+            <TextView
+                android:id="@+id/tv_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_title"
+                android:padding="@dimen/default_general_margin"
+                android:textColor="@color/black_alpha_45"
+                android:textSize="@dimen/default_small_text_size"/>
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

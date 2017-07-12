@@ -5,7 +5,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 
 import com.mreturn.biliclient.R;
-import com.mreturn.biliclient.ui.base.BaseLazyFragment;
+import com.mreturn.biliclient.ui.base.BaseRxLazyFragment;
 import com.mreturn.biliclient.widget.CustomEmptyView;
 
 import butterknife.BindView;
@@ -15,7 +15,7 @@ import butterknife.BindView;
  * on 2017/7/11.
  */
 
-public abstract class BaseHomeContentFragment extends BaseLazyFragment{
+public abstract class BaseHomeContentFragment extends BaseRxLazyFragment {
     @BindView(R.id.recycle_view)
     RecyclerView recycleView;
     @BindView(R.id.empty_view)

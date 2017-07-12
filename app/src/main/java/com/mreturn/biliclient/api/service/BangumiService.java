@@ -15,7 +15,7 @@ public interface BangumiService {
     /**
      * 首页番剧
      */
-    @GET("api/app_index_page_v4?build=3940&device=phone&mobi_app=iphone&platform=ios")
+    @GET("api/app_index_page_v4?build=3940&device=phone&mobi_app=iphone&platform=android")
     Observable<BangumiAppIndexInfo> getBangumiAppIndex();
 
     /**

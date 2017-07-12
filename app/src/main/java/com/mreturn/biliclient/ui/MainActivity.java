@@ -85,6 +85,9 @@ public class MainActivity extends BaseRxActivity implements NavigationView.OnNav
             getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             SpUtils.put(this, Constant.IS_NIGHT_MODE, true);
         }
+
+//        ToastUtil.show(getSupportFragmentManager().getFragments().size()+"");
+        recreate();
     }
 
 

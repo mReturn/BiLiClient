@@ -32,6 +32,8 @@ public abstract class Section {
     @LayoutRes
     private Integer failedResourceId;
 
+    private int spanSize = 1;
+
 
     //constructor
     public Section() {
@@ -97,7 +99,8 @@ public abstract class Section {
     public void bindLoadingView(BaseViewHolder holder) {
     }
 
-    public abstract void bindItemView(BaseViewHolder holder, int position);
+    public  void bindItemView(BaseViewHolder holder, int position){
+    }
 
     public void bindFailedView(BaseViewHolder holder) {
     }
@@ -143,6 +146,13 @@ public abstract class Section {
         this.hasFooter = hasFooter;
     }
 
+    public int getSpanSize() {
+        return spanSize;
+    }
+
+    public void setSpanSize(int spanSize) {
+        this.spanSize = spanSize;
+    }
 
     //get
     public Integer getHeaderResourceId() {

@@ -165,6 +165,15 @@ public class SectionedRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewH
         throw new IndexOutOfBoundsException("Invalid position");
     }
 
+
+    /**
+     * Returns the Section`s span size  for a position in the adapter
+     */
+    public int getSectionSpanSize(int position) {
+        Section section = getSectionForPosition(position);
+        return section.getSpanSize();
+    }
+
     /**
      * Returns the Section object for a position in the adapter
      *
@@ -187,6 +196,7 @@ public class SectionedRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewH
         }
         throw new IndexOutOfBoundsException("IndexOutOfBounds");
     }
+
 
 
     /**
@@ -227,7 +237,6 @@ public class SectionedRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewH
         int viewType = getItemViewType(position);
         return viewType % VIEW_TYPE_QTY;
     }
-
 
     /**
      * Add a section to this recyclerview.

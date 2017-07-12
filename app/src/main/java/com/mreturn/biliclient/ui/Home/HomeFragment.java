@@ -13,7 +13,7 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.mreturn.biliclient.R;
 import com.mreturn.biliclient.adapter.home.HomePagerAdapter;
 import com.mreturn.biliclient.ui.MainActivity;
-import com.mreturn.biliclient.ui.base.BaseLazyFragment;
+import com.mreturn.biliclient.ui.base.BaseRxLazyFragment;
 import com.mreturn.biliclient.utils.ToastUtil;
 
 import butterknife.BindView;
@@ -24,7 +24,7 @@ import butterknife.OnClick;
  * on 2017/7/5.
  */
 
-public class HomeFragment extends BaseLazyFragment {
+public class HomeFragment extends BaseRxLazyFragment {
 
     @BindView(R.id.toobar)
     Toolbar toobar;

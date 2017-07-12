@@ -9,6 +9,7 @@ import com.mreturn.biliclient.R;
 import com.mreturn.biliclient.ui.Home.HomeBangumiFragment;
 import com.mreturn.biliclient.ui.Home.HomeLiveFragment;
 import com.mreturn.biliclient.ui.Home.HomeRecommendFragment;
+import com.mreturn.biliclient.ui.Home.HomeRegionFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,9 @@ public class HomePagerAdapter extends FragmentPagerAdapter {
                     break;
                 case 2:
                     fragments.add(new HomeBangumiFragment());
+                    break;
+                case 3:
+                    fragments.add(new HomeRegionFragment());
                     break;
                 default:
                     fragments.add(new HomeLiveFragment());

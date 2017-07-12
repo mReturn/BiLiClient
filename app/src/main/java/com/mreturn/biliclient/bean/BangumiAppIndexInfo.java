@@ -1,5 +1,7 @@
 package com.mreturn.biliclient.bean;
 
+import com.mreturn.biliclient.widget.banner.BannerBean;
+
 import java.util.List;
 
 /**
@@ -102,7 +104,7 @@ public class BangumiAppIndexInfo {
             private List<BodyBean> body;
 
 
-            private List<HeadBean> head;
+            private List<BannerBean> head;
 
 
             public List<BodyBean> getBody() {
@@ -117,13 +119,13 @@ public class BangumiAppIndexInfo {
             }
 
 
-            public List<HeadBean> getHead() {
+            public List<BannerBean> getHead() {
 
                 return head;
             }
 
 
-            public void setHead(List<HeadBean> head) {
+            public void setHead(List<BannerBean> head) {
 
                 this.head = head;
             }
@@ -188,92 +190,6 @@ public class BangumiAppIndexInfo {
                 }
             }
 
-            public static class HeadBean {
-
-                private int id;
-
-                private String img;
-
-                private int is_ad;
-
-                private String link;
-
-                private String pub_time;
-
-                private String title;
-
-
-                public int getId() {
-
-                    return id;
-                }
-
-
-                public void setId(int id) {
-
-                    this.id = id;
-                }
-
-
-                public String getImg() {
-
-                    return img;
-                }
-
-
-                public void setImg(String img) {
-
-                    this.img = img;
-                }
-
-
-                public int getIs_ad() {
-
-                    return is_ad;
-                }
-
-
-                public void setIs_ad(int is_ad) {
-
-                    this.is_ad = is_ad;
-                }
-
-
-                public String getLink() {
-
-                    return link;
-                }
-
-
-                public void setLink(String link) {
-
-                    this.link = link;
-                }
-
-
-                public String getPub_time() {
-
-                    return pub_time;
-                }
-
-
-                public void setPub_time(String pub_time) {
-
-                    this.pub_time = pub_time;
-                }
-
-
-                public String getTitle() {
-
-                    return title;
-                }
-
-
-                public void setTitle(String title) {
-
-                    this.title = title;
-                }
-            }
         }
 
         public static class PreviousBean {

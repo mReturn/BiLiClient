@@ -1,4 +1,4 @@
-package com.mreturn.biliclient.adapter.section.base;
+package com.mreturn.biliclient.adapter.section;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.mreturn.biliclient.R;
 import com.mreturn.biliclient.adapter.BaseViewHolder;
 import com.mreturn.biliclient.adapter.home.RecommendInfo;
+import com.mreturn.biliclient.adapter.section.base.StatelessSection;
 import com.mreturn.biliclient.utils.ImageLoader;
 import com.mreturn.biliclient.utils.ToastUtil;
 

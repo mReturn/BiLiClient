@@ -8,11 +8,43 @@ public class BannerBean {
   private String remark;
   private String link;
 
+  //recommend
   private String value;
   private String image;
   private int type;
   private int weight;
   private String hash;
+
+  //bangumi
+  private int id;
+  private int is_ad;
+  private String pub_time;
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public int getIs_ad() {
+    return is_ad;
+  }
+
+  public void setIs_ad(int is_ad) {
+    this.is_ad = is_ad;
+  }
+
+  public String getPub_time() {
+    return pub_time;
+  }
+
+  public void setPub_time(String pub_time) {
+    this.pub_time = pub_time;
+  }
+
+
 
   public String getValue() {
     return value;

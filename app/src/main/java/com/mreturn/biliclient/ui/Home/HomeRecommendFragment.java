@@ -10,7 +10,7 @@ import com.mreturn.biliclient.adapter.home.RecommendInfo;
 import com.mreturn.biliclient.adapter.section.RecommendActivityCenterSection;
 import com.mreturn.biliclient.adapter.section.RecommendBannerSection;
 import com.mreturn.biliclient.adapter.section.RecommendTopicSection;
-import com.mreturn.biliclient.adapter.section.base.RecommendSection;
+import com.mreturn.biliclient.adapter.section.RecommendSection;
 import com.mreturn.biliclient.adapter.section.base.SectionedRecyclerViewAdapter;
 import com.mreturn.biliclient.api.CustomObserver;
 import com.mreturn.biliclient.api.RetrofitHelper;
@@ -29,6 +29,7 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * Created by mReturn
  * on 2017/7/10.
+ * 推荐
  */
 
 public class HomeRecommendFragment extends BaseHomeContentFragment {
@@ -109,6 +110,7 @@ public class HomeRecommendFragment extends BaseHomeContentFragment {
     }
 
     private void setRecommendData(List<RecommendInfo.ResultBean> resultBeen) {
+        sectionAdapter.removeAllSections();
         //banner
         sectionAdapter.addSection(new RecommendBannerSection(bannerList));
         //item
