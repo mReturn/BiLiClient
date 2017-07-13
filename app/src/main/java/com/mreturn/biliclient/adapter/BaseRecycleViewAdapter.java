@@ -22,6 +22,10 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
 
     OnItemClickListener itemClickListener;
 
+    public void setOnItemClickListener(OnItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
+
     public BaseRecycleViewAdapter(Context context , List<T> datas) {
         this.mDatas = (datas == null) ? new ArrayList<T>() : datas;
         this.mContext = context;
@@ -36,7 +40,7 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
 
     @Override
     public void onBindViewHolder(BaseViewHolder holder, int position) {
-        bindData(holder,position, mDatas.get(position));
+        bindData(holder,position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +57,7 @@ public abstract class BaseRecycleViewAdapter<T> extends RecyclerView.Adapter<Bas
     }
 
     public abstract int getItemLayoutId(int layoutID);
-    public abstract void bindData(BaseViewHolder holder,int position, T item);
+    public abstract void bindData(BaseViewHolder holder,int position);
 
 
     public interface OnItemClickListener {

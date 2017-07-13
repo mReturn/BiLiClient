@@ -8,7 +8,7 @@ import android.net.NetworkInfo;
  * Created by admin on 2017/7/5.
  */
 
-public class CommonUtils {
+public class NetUtils {
 
     /**
      * 检查是否又网络
@@ -40,7 +40,6 @@ public class CommonUtils {
         return false;
 
     }
-
 
 
     private static NetworkInfo getNetWorInfo(Context context) {

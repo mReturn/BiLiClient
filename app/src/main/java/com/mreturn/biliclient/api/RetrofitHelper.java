@@ -6,7 +6,7 @@ import com.mreturn.biliclient.api.service.BangumiService;
 import com.mreturn.biliclient.api.service.LiveService;
 import com.mreturn.biliclient.app.BiLiApplication;
 import com.mreturn.biliclient.app.Constant;
-import com.mreturn.biliclient.utils.CommonUtils;
+import com.mreturn.biliclient.utils.NetUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -87,7 +87,7 @@ public class RetrofitHelper {
             int connectMaxAge = 60 * 60;
             int offMaxStale = 60 * 60 * 24;
             Request request = chain.request();
-            if (CommonUtils.isNetWorkAvalable(BiLiApplication.getInstance())){
+            if (NetUtils.isNetWorkAvalable(BiLiApplication.getInstance())){
                 // 有网时从网络获取
                 request = request.newBuilder().cacheControl(CacheControl.FORCE_NETWORK).build();
             }else {
@@ -95,7 +95,7 @@ public class RetrofitHelper {
                 request = request.newBuilder().cacheControl(CacheControl.FORCE_CACHE).build();
             }
             Response response = chain.proceed(request);
-            if (CommonUtils.isNetWorkAvalable(BiLiApplication.getInstance())){
+            if (NetUtils.isNetWorkAvalable(BiLiApplication.getInstance())){
                 response = response.newBuilder()
                         .removeHeader("Pragma")
                         .header("Cache-Control","public, max-age="+connectMaxAge)
