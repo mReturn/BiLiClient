@@ -73,4 +73,6 @@ dependencies {
     //搜索框  https://github.com/MiguelCatalan/MaterialSearchView
     compile 'com.miguelcatalan:materialsearchview:1.4.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
+    //
+    compile 'com.zhy:flowlayout-lib:1.0.1'
 }

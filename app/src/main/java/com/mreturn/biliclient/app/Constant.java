@@ -8,6 +8,8 @@ package com.mreturn.biliclient.app;
 public class Constant {
     //sp key
     public static final String IS_NIGHT_MODE = "is_night_mode";
+    //
+    public static final String KEY_TAG = "tag";
 
     //api
     public static final String BILI_GO_BASE_URL = "http://bilibili-service.daoapp.io/";

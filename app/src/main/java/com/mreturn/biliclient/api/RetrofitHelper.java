@@ -4,6 +4,7 @@ import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.mreturn.biliclient.api.service.AppService;
 import com.mreturn.biliclient.api.service.BangumiService;
 import com.mreturn.biliclient.api.service.LiveService;
+import com.mreturn.biliclient.api.service.SearchService;
 import com.mreturn.biliclient.app.BiLiApplication;
 import com.mreturn.biliclient.app.Constant;
 import com.mreturn.biliclient.utils.NetUtils;
@@ -45,6 +46,11 @@ public class RetrofitHelper {
 
     public static BangumiService getBangumiApi(){
         return creatApi(BangumiService.class,Constant.BANGUMI_BASE_URL);
+    }
+
+    public static SearchService getSearchApi(){
+        return creatApi(SearchService.class,Constant.SEARCH_BASE_URL);
+
     }
 
 

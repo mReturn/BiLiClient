@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatDelegate;
@@ -32,7 +33,10 @@ public class MainActivity extends BaseRxActivity implements NavigationView.OnNav
     private int currentTabIndex;
     private int index;
     private long exitTime;
-    HomeFragment mHomeFragment;
+    private HomeFragment mHomeFragment;
+    private Fragment currentFragment;
+    private String currentTag;
+    public static final String TAG_MAIN = "main";
 
     @Override
     protected int getLayoutId() {
@@ -47,18 +51,44 @@ public class MainActivity extends BaseRxActivity implements NavigationView.OnNav
     protected void initView(Bundle savedInstanceState) {
         initFragments();
         intNavView();
+//        if (savedInstanceState != null){
+//            currentTag = savedInstanceState.getString(Constant.KEY_TAG,TAG_MAIN);
+//            initFragment(currentTag);
+//        }else {
+//            initFragment(TAG_MAIN);
+//        }
     }
 
-    private void initFragments() {
-        if (mHomeFragment == null){
-            mHomeFragment = new HomeFragment();
-            //显示主界面
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.fl_main, mHomeFragment)
-                    .show(mHomeFragment)
-                    .commit();
+    private void initFragment(String tag) {
+        currentTag = tag;
+        if (tag.equals(TAG_MAIN)){
+            mHomeFragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag(TAG_MAIN);
+            if (mHomeFragment == null){
+                mHomeFragment = new HomeFragment();
+                currentFragment = mHomeFragment;
+
+            }
+
         }
+    }
+
+
+    private void initFragments() {
+
+        mHomeFragment = new HomeFragment();
+        CollectFragment collectFragment = new CollectFragment();
+        fragments = new Fragment[]{
+                mHomeFragment,
+                collectFragment
+        };
+
+
+        //显示主界面
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.fl_main, mHomeFragment)
+                .show(mHomeFragment)
+                .commit();
     }
 
     //初始化左侧菜单栏
@@ -104,8 +134,30 @@ public class MainActivity extends BaseRxActivity implements NavigationView.OnNav
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        ToastUtil.show(item.getTitle() + "");
+        drawerLayout.closeDrawer(GravityCompat.START);
+        switch (item.getItemId()){
+            case R.id.item_home:
+                changeFragment(item,0);
+                break;
+            case R.id.item_collect:
+                changeFragment(item,1);
+                break;
+        }
+        ToastUtil.show(item.getTitle() +"  "+ item.getItemId());
         return false;
+    }
+
+    private void changeFragment(MenuItem item, int currentIndex) {
+        index = currentIndex;
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.hide(fragments[currentTabIndex]);
+        if (!fragments[index].isAdded()){
+            transaction.add(R.id.fl_main,fragments[index]);
+        }
+        transaction.show(fragments[index]).commit();
+        currentTabIndex = index;
+
+        item.setChecked(true);
     }
 
     @Override
