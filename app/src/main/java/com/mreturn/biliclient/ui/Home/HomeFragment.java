@@ -77,7 +77,7 @@ public class HomeFragment extends BaseRxLazyFragment {
         viewPager.setOffscreenPageLimit(5);
         viewPager.setAdapter(adapter);
         slidingTab.setViewPager(viewPager);
-        viewPager.setCurrentItem(1);
+        viewPager.setCurrentItem(0);
     }
 
     @Override

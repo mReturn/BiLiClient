@@ -30,6 +30,9 @@
                   android:theme="@style/MainActivityColorTranslucentTheme"
                   android:windowSoftInputMode="stateAlwaysHidden|adjustPan"/>
 
+        <activity
+            android:name="com.mreturn.biliclient.ui.live.LivePlayerActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

@@ -31,10 +31,10 @@ public abstract class BaseRxActivity extends RxAppCompatActivity implements Them
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         bind = ButterKnife.bind(this);
-        //初始化ToolBar
-        initToolBar();
         //初始化页面
         initView(savedInstanceState);
+        //初始化ToolBar
+        initToolBar();
     }
 
     @Override

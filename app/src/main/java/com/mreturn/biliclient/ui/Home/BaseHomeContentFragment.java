@@ -17,11 +17,11 @@ import butterknife.BindView;
 
 public abstract class BaseHomeContentFragment extends BaseRxLazyFragment {
     @BindView(R.id.recycle_view)
-    RecyclerView recycleView;
+    protected RecyclerView recycleView;
     @BindView(R.id.empty_view)
-    CustomEmptyView emptyView;
+    protected CustomEmptyView emptyView;
     @BindView(R.id.swip_refresh_layout)
-    SwipeRefreshLayout swipRefreshLayout;
+    protected SwipeRefreshLayout swipRefreshLayout;
 
     @Override
     protected int getLayoutId() {

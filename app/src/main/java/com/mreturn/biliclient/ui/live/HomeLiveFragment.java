@@ -1,4 +1,4 @@
-package com.mreturn.biliclient.ui.Home;
+package com.mreturn.biliclient.ui.live;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +9,7 @@ import com.mreturn.biliclient.adapter.home.HomeLiveAdapter;
 import com.mreturn.biliclient.api.CustomObserver;
 import com.mreturn.biliclient.api.RetrofitHelper;
 import com.mreturn.biliclient.bean.LiveAppIndexInfo;
+import com.mreturn.biliclient.ui.Home.BaseHomeContentFragment;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -41,7 +42,6 @@ public class HomeLiveFragment extends BaseHomeContentFragment {
         layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
-
                 return liveAdapter.getSpanSize(position);
             }
         });

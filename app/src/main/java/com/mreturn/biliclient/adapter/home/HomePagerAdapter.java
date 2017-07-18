@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.mreturn.biliclient.R;
 import com.mreturn.biliclient.ui.Home.HomeBangumiFragment;
 import com.mreturn.biliclient.ui.Home.HomeDiscoverFragment;
-import com.mreturn.biliclient.ui.Home.HomeLiveFragment;
+import com.mreturn.biliclient.ui.live.HomeLiveFragment;
 import com.mreturn.biliclient.ui.Home.HomeRecommendFragment;
 import com.mreturn.biliclient.ui.Home.HomeRegionFragment;
 

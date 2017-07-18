@@ -103,7 +103,7 @@ public class Constant {
 
     public static final String EXTRA_ONLINE = "online";
 
-    public static final String EXTRA_FACE = "face";
+    public static final String EXTRA_AVATAR = "avatar";
 
     public static final String EXTRA_NAME = "name";
 

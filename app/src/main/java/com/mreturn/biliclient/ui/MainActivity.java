@@ -30,13 +30,10 @@ public class MainActivity extends BaseRxActivity implements NavigationView.OnNav
     DrawerLayout drawerLayout;
 
     private Fragment[] fragments;
-    private int currentTabIndex;
-    private int index;
+    private int currentTabIndex = 0;
     private long exitTime;
     private HomeFragment mHomeFragment;
-    private Fragment currentFragment;
-    private String currentTag;
-    public static final String TAG_MAIN = "main";
+    public static final String INDEX = "index";
 
     @Override
     protected int getLayoutId() {
@@ -51,30 +48,9 @@ public class MainActivity extends BaseRxActivity implements NavigationView.OnNav
     protected void initView(Bundle savedInstanceState) {
         initFragments();
         intNavView();
-//        if (savedInstanceState != null){
-//            currentTag = savedInstanceState.getString(Constant.KEY_TAG,TAG_MAIN);
-//            initFragment(currentTag);
-//        }else {
-//            initFragment(TAG_MAIN);
-//        }
     }
-
-    private void initFragment(String tag) {
-        currentTag = tag;
-        if (tag.equals(TAG_MAIN)){
-            mHomeFragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag(TAG_MAIN);
-            if (mHomeFragment == null){
-                mHomeFragment = new HomeFragment();
-                currentFragment = mHomeFragment;
-
-            }
-
-        }
-    }
-
 
     private void initFragments() {
-
         mHomeFragment = new HomeFragment();
         CollectFragment collectFragment = new CollectFragment();
         fragments = new Fragment[]{
@@ -84,11 +60,7 @@ public class MainActivity extends BaseRxActivity implements NavigationView.OnNav
 
 
         //显示主界面
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.fl_main, mHomeFragment)
-                .show(mHomeFragment)
-                .commit();
+        switchFragment(currentTabIndex);
     }
 
     //初始化左侧菜单栏
@@ -109,14 +81,15 @@ public class MainActivity extends BaseRxActivity implements NavigationView.OnNav
     private void switchThemeMode(ImageView iv) {
         boolean isNight = (boolean) SpUtils.get(this, Constant.IS_NIGHT_MODE, false);
         if (isNight) {
-            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             SpUtils.put(this, Constant.IS_NIGHT_MODE, false);
         } else {
-            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             SpUtils.put(this, Constant.IS_NIGHT_MODE, true);
         }
 
-//        ToastUtil.show(getSupportFragmentManager().getFragments().size()+"");
         recreate();
     }
 
@@ -135,29 +108,36 @@ public class MainActivity extends BaseRxActivity implements NavigationView.OnNav
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         drawerLayout.closeDrawer(GravityCompat.START);
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.item_home:
-                changeFragment(item,0);
+                changeFragment(item, 0);
                 break;
             case R.id.item_collect:
-                changeFragment(item,1);
+                changeFragment(item, 1);
+                break;
+            default:
+                ToastUtil.show(item.getTitle().toString());
                 break;
         }
-        ToastUtil.show(item.getTitle() +"  "+ item.getItemId());
         return false;
     }
 
     private void changeFragment(MenuItem item, int currentIndex) {
-        index = currentIndex;
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.hide(fragments[currentTabIndex]);
-        if (!fragments[index].isAdded()){
-            transaction.add(R.id.fl_main,fragments[index]);
-        }
-        transaction.show(fragments[index]).commit();
-        currentTabIndex = index;
-
+        switchFragment(currentIndex);
         item.setChecked(true);
+    }
+
+    private void switchFragment(int currentIndex) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        for (int i = 0; i < fragments.length; i++) {
+            transaction.hide(fragments[i]);
+        }
+//        transaction.hide(fragments[currentTabIndex]);
+        if (!fragments[currentIndex].isAdded()) {
+            transaction.add(R.id.fl_main, fragments[currentIndex]);
+        }
+        transaction.show(fragments[currentIndex]).commit();
+        currentTabIndex = currentIndex;
     }
 
     @Override
@@ -166,10 +146,15 @@ public class MainActivity extends BaseRxActivity implements NavigationView.OnNav
             drawerLayout.closeDrawers();
         } else if (mHomeFragment != null && mHomeFragment.isSearchViewOpen()) {
             mHomeFragment.closeSearchView();
+        } else if (currentTabIndex != 0) {
+            currentTabIndex = 0;
+            switchFragment(currentTabIndex);
+            navHome.setCheckedItem(R.id.item_home);
         } else {
             exitApp();
         }
     }
+
 
     private void exitApp() {
         if (System.currentTimeMillis() - exitTime > 2000) {
@@ -178,5 +163,19 @@ public class MainActivity extends BaseRxActivity implements NavigationView.OnNav
         } else {
             System.exit(0);
         }
+    }
+
+
+    public void onSaveInstanceState(Bundle outState) {
+        // 防止fragment重叠
+//        super.onSaveInstanceState(outState);
+        outState.putInt(INDEX, currentTabIndex);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        currentTabIndex = savedInstanceState.getInt(INDEX);
+        switchFragment(currentTabIndex);
+        super.onRestoreInstanceState(savedInstanceState);
     }
 }
