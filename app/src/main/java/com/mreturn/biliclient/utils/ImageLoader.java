@@ -45,7 +45,7 @@ public class ImageLoader {
                 .dontAnimate()
                 .error(resId)
                 .centerCrop()
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(new GlideDrawableImageViewTarget(imageView,0));
 
     }
@@ -57,7 +57,7 @@ public class ImageLoader {
                 .error(resId)
                 .override(600, 800)
                 .fitCenter()
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageView);
 
     }
@@ -68,6 +68,7 @@ public class ImageLoader {
                 .placeholder(resId)
                 .error(resId)
                 .dontAnimate()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(new GlideDrawableImageViewTarget(imageView,0));
     }
 
@@ -77,6 +78,7 @@ public class ImageLoader {
                 .centerCrop()
                 .override(600, 800)
                 .fitCenter()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imageView);
     }
 
@@ -91,6 +93,7 @@ public class ImageLoader {
                 .placeholder(resId)
                 .error(resId)
                 .centerCrop()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(new BitmapImageViewTarget(imageView) {
                     @Override
                     protected void setResource(Bitmap resource) {

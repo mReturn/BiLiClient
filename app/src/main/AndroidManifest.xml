@@ -33,6 +33,9 @@
         <activity
             android:name="com.mreturn.biliclient.ui.live.LivePlayerActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.user.UserInfoActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

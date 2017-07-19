@@ -2,9 +2,11 @@ package com.mreturn.biliclient.api.service;
 
 import com.mreturn.biliclient.adapter.home.RecommendBannerInfo;
 import com.mreturn.biliclient.adapter.home.RecommendInfo;
+import com.mreturn.biliclient.bean.UserInfo;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 /**
  * Created by mReturn
@@ -23,4 +25,11 @@ public interface AppService {
      */
     @GET("x/show/old?platform=android&device=&build=412001")
     Observable<RecommendInfo> getRecommendedInfo();
+
+    /**
+     * 用户信息
+     */
+    @GET("x/v2/space?access_key=&appkey=1d8b6e7d45233436&build=506000&from=0" +
+            "&mobi_app=android&platform=android&ps=10")
+    Observable<UserInfo> getUserInfo(@Query("vmid") int vmid);
 }

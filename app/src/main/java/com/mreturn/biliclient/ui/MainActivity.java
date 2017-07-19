@@ -14,6 +14,7 @@ import android.widget.ImageView;
 
 import com.mreturn.biliclient.R;
 import com.mreturn.biliclient.app.Constant;
+import com.mreturn.biliclient.ui.Home.CollectFragment;
 import com.mreturn.biliclient.ui.Home.HomeFragment;
 import com.mreturn.biliclient.ui.base.BaseRxActivity;
 import com.mreturn.biliclient.utils.SpUtils;

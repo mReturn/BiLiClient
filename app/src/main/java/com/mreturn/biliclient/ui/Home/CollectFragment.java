@@ -1,10 +1,11 @@
-package com.mreturn.biliclient.ui;
+package com.mreturn.biliclient.ui.Home;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.mreturn.biliclient.R;
+import com.mreturn.biliclient.ui.MainActivity;
 import com.mreturn.biliclient.ui.base.BaseRxLazyFragment;
 import com.mreturn.biliclient.widget.CustomEmptyView;
 
