@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/contribute_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_general_margin">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/default_tiny_padding"
+        android:text="@string/all_contribute"
+        android:textColor="@color/font_normal"
+        android:textSize="@dimen/default_small_text_size"/>
+
+
+    <TextView
+        android:id="@+id/tv_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_toRightOf="@id/tv_title"
+        android:textColor="@color/black_alpha_45"
+        android:textSize="@dimen/default_tiny_text_size"/>
+
+
+    <TextView
+        android:id="@+id/contribute_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/default_tiny_padding"
+        android:text="@string/go_to_look"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/default_small_text_size"/>
+
+
+</RelativeLayout>

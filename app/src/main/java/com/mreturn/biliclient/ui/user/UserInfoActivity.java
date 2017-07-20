@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.widget.Toolbar;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.mreturn.biliclient.R;
+import com.mreturn.biliclient.adapter.user.UserPagerAdapter;
 import com.mreturn.biliclient.api.CustomObserver;
 import com.mreturn.biliclient.api.RetrofitHelper;
 import com.mreturn.biliclient.app.Constant;
@@ -24,6 +26,7 @@ import com.mreturn.biliclient.bean.UserInfo;
 import com.mreturn.biliclient.event.AppBarStateChangeEvent;
 import com.mreturn.biliclient.ui.base.BaseRxActivity;
 import com.mreturn.biliclient.utils.ImageLoader;
+import com.mreturn.biliclient.utils.MyLog;
 import com.mreturn.biliclient.utils.SystemBarHelper;
 
 import java.util.ArrayList;
@@ -76,8 +79,8 @@ public class UserInfoActivity extends BaseRxActivity {
 
     private int mid;
     private String name;
-    private String avatar;
     private List<Fragment> fragments = new ArrayList<>();
+    String [] titles;
 
     @Override
     protected int getLayoutId() {
@@ -89,11 +92,8 @@ public class UserInfoActivity extends BaseRxActivity {
         Intent intent = getIntent();
         if (intent != null) {
             mid = intent.getIntExtra(Constant.EXTRA_MID, -1);
-            name = intent.getStringExtra(Constant.EXTRA_NAME);
-            avatar = intent.getStringExtra(Constant.EXTRA_AVATAR);
         }
-        tvUserName.setText(name);
-        ImageLoader.displayCircleImg(ivUserAvatar, avatar, R.drawable.ico_user_default);
+        mid = 682508;
 
         getUserIfo();
     }
@@ -126,7 +126,6 @@ public class UserInfoActivity extends BaseRxActivity {
                 }
             }
         });
-
     }
 
     private void getUserIfo() {
@@ -139,7 +138,7 @@ public class UserInfoActivity extends BaseRxActivity {
                     @Override
                     protected void onSuccess(UserInfo userInfo) {
                         pb.setVisibility(View.GONE);
-                        if (userInfo != null){
+                        if (userInfo != null) {
                             setUserData(userInfo);
                         }
                     }
@@ -152,9 +151,11 @@ public class UserInfoActivity extends BaseRxActivity {
     }
 
     private void setUserData(UserInfo userInfo) {
-//        ImageLoader.displayCircleImg(ivUserAvatar, userInfo.getCard().getFace(), R.drawable.ico_user_default);
-//        tvUserName.setText(userInfo.getCard().getName());
         UserInfo.DataBean.CardBean cardBean = userInfo.getData().getCard();
+        if (cardBean == null) return;
+        ImageLoader.displayCircleImg(ivUserAvatar, cardBean.getFace(), R.drawable.ico_user_default);
+        name = cardBean.getName();
+        tvUserName.setText(name);
         tvFollowUsers.setText(cardBean.getAttention() + "");
         tvFans.setText(cardBean.getFans() + "");
         setuserLevel(cardBean.getLevel_info().getCurrent_level());
@@ -171,20 +172,20 @@ public class UserInfoActivity extends BaseRxActivity {
                 break;
         }
         //签名信息
-        if (!TextUtils.isEmpty(cardBean.getSign())){
+        if (!TextUtils.isEmpty(cardBean.getSign())) {
             tvUserDesc.setText(cardBean.getSign());
-        }else {
+        } else {
             tvUserDesc.setText("这个人懒死了,什么都没有写(・－・。)");
         }
         //认证信息
-        if (cardBean.isApprove()){
+        if (cardBean.isApprove()) {
             llAuthorVerified.setVisibility(View.VISIBLE);
-            if (!TextUtils.isEmpty(cardBean.getDescription())){
+            if (!TextUtils.isEmpty(cardBean.getDescription())) {
                 tvAuthorVerified.setText(cardBean.getDescription());
-            }else {
+            } else {
                 tvAuthorVerified.setText("这个人懒死了,什么都没有写(・－・。)");
             }
-        }else {
+        } else {
             llAuthorVerified.setVisibility(View.GONE);
         }
 
@@ -193,41 +194,102 @@ public class UserInfoActivity extends BaseRxActivity {
 
     //设置等级
     private void setuserLevel(int level) {
-        switch (level){
+        switch (level) {
             case 0:
                 ivLevel.setImageResource(R.drawable.ic_lv0);
-            break;
+                break;
             case 1:
                 ivLevel.setImageResource(R.drawable.ic_lv1);
-            break;
+                break;
             case 2:
                 ivLevel.setImageResource(R.drawable.ic_lv2);
-            break;
+                break;
             case 3:
                 ivLevel.setImageResource(R.drawable.ic_lv3);
-            break;
+                break;
             case 4:
                 ivLevel.setImageResource(R.drawable.ic_lv4);
-            break;
+                break;
             case 5:
                 ivLevel.setImageResource(R.drawable.ic_lv5);
-            break;
+                break;
             case 6:
                 ivLevel.setImageResource(R.drawable.ic_lv6);
-            break;
+                break;
             default:
                 break;
         }
     }
 
     private void intViewPager(UserInfo userInfo) {
-        fragments.add(UserArchiveFragment.newInstance(userInfo.getData().getArchive(),mid));
-        fragments.add(UserArchiveFragment.newInstance(userInfo.getData().getArchive(),mid));
-        fragments.add(UserArchiveFragment.newInstance(userInfo.getData().getArchive(),mid));
-        fragments.add(UserArchiveFragment.newInstance(userInfo.getData().getArchive(),mid));
-        fragments.add(UserArchiveFragment.newInstance(userInfo.getData().getArchive(),mid));
-        fragments.add(UserArchiveFragment.newInstance(userInfo.getData().getArchive(),mid));
+        fragments.add(UserArchiveFragment.newInstance(userInfo.getData().getArchive(), mid));
+        fragments.add(UserFavouriteFragment.newInstance(userInfo.getData().getFavourite()));
+        fragments.add(UserSeasonFragment.newInstance(userInfo.getData().getSeason(), mid));
+        fragments.add(UserCommunityFragment.newInstance(userInfo.getData().getCommunity(), mid));
+        fragments.add(UserCoinFragment.newInstance(userInfo.getData().getCoin_archive(), mid));
+        fragments.add(UserGameFragment.newInstance(userInfo.getData().getGame()));
         viewPager.setOffscreenPageLimit(fragments.size());
+        viewPager.setAdapter(new UserPagerAdapter(getSupportFragmentManager(), fragments));
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                setSlidingTabIndicatorWidth(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+
+        intTitle(userInfo);
+    }
+
+    private void intTitle(UserInfo userInfo) {
+        UserInfo.DataBean userData = userInfo.getData();
+        String homeStr = "主页";
+        String archiveStr = "投稿";
+        String favouriteStr = "收藏";
+        String seaonStr = "追番";
+        String communityStr = "兴趣圈";
+        String coinStr = "投币";
+        String gameStr = "游戏";
+        if (userData.getArchive() != null && userData.getArchive().getCount() > 0) {
+            archiveStr = archiveStr + userData.getArchive().getCount();
+        }
+        if (userData.getFavourite() != null && userData.getFavourite().getCount() > 0) {
+            favouriteStr = favouriteStr + userData.getFavourite().getCount();
+        }
+        if (userData.getSeason() != null && userData.getSeason().getCount() > 0) {
+            seaonStr = seaonStr + userData.getSeason().getCount();
+        }
+        if (userData.getCommunity() != null && userData.getCommunity().getCount() > 0) {
+            communityStr = communityStr + userData.getCommunity().getCount();
+        }
+        if (userData.getCoin_archive() != null && userData.getCoin_archive().getCount() > 0) {
+            coinStr = coinStr + userData.getCoin_archive().getCount();
+        }
+        if (userData.getGame() != null && userData.getGame().getCount() > 0) {
+            gameStr = gameStr + userData.getGame().getCount();
+        }
+       titles = new String[]{archiveStr,favouriteStr,seaonStr,communityStr,coinStr,gameStr};
+        slidingTabs.setViewPager(viewPager,titles);
+        viewPager.setCurrentItem(0);
+        setSlidingTabIndicatorWidth(0);
+    }
+
+    private void setSlidingTabIndicatorWidth(int pos) {
+        if (titles != null && titles.length>pos){
+            String title = titles[pos];
+            TextView tv = slidingTabs.getTitleView(pos);
+            TextPaint paint = tv.getPaint();
+            float textWidth = paint.measureText(title);
+            MyLog.e("text width: ",textWidth+"");
+            slidingTabs.setIndicatorWidth(textWidth/2);
+        }
     }
 
 

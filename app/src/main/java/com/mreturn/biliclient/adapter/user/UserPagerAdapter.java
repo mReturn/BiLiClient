@@ -1,6 +1,5 @@
-package com.mreturn.biliclient.adapter;
+package com.mreturn.biliclient.adapter.user;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -17,7 +16,7 @@ public class UserPagerAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> fragments;
 
-    public UserPagerAdapter(Context context, FragmentManager fm,List<Fragment> fragments) {
+    public UserPagerAdapter(FragmentManager fm,List<Fragment> fragments) {
         super(fm);
         this.fragments = fragments;
 

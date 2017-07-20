@@ -2,7 +2,9 @@ package com.mreturn.biliclient.api.service;
 
 import com.mreturn.biliclient.adapter.home.RecommendBannerInfo;
 import com.mreturn.biliclient.adapter.home.RecommendInfo;
+import com.mreturn.biliclient.bean.UserArchiveInfo;
 import com.mreturn.biliclient.bean.UserInfo;
+import com.mreturn.biliclient.bean.UserSeasonInfo;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -32,4 +34,18 @@ public interface AppService {
     @GET("x/v2/space?access_key=&appkey=1d8b6e7d45233436&build=506000&from=0" +
             "&mobi_app=android&platform=android&ps=10")
     Observable<UserInfo> getUserInfo(@Query("vmid") int vmid);
+
+    /**
+     * 用户信息
+     */
+    @GET("/x/v2/space/archive?access_key=&appkey=1d8b6e7d45233436&build=506000" +
+            "&mobi_app=android&platform=android&ps=10")
+    Observable<UserArchiveInfo> getArchive(@Query("pn") int pageNum, @Query("vmid") int vmid);
+
+    /**
+     * 用户信息
+     */
+    @GET("/x/v2/space/bangumi?access_key=&appkey=1d8b6e7d45233436&build=506000" +
+            "&mobi_app=android&platform=android&ps=10")
+    Observable<UserSeasonInfo> getSeason(@Query("pn") int pageNum, @Query("vmid") int vmid);
 }

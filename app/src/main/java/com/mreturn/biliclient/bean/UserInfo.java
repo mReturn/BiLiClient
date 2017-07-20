@@ -1309,7 +1309,7 @@ public class UserInfo implements Parcelable{
              */
 
             private int count;
-            private List<ItemBeanX> item;
+            private List<FavouriteItemBean> item;
 
             protected FavouriteBean(Parcel in) {
                 count = in.readInt();
@@ -1335,11 +1335,11 @@ public class UserInfo implements Parcelable{
                 this.count = count;
             }
 
-            public List<ItemBeanX> getItem() {
+            public List<FavouriteItemBean> getItem() {
                 return item;
             }
 
-            public void setItem(List<ItemBeanX> item) {
+            public void setItem(List<FavouriteItemBean> item) {
                 this.item = item;
             }
 
@@ -1353,7 +1353,7 @@ public class UserInfo implements Parcelable{
                 dest.writeInt(count);
             }
 
-            public static class ItemBeanX {
+            public static class FavouriteItemBean {
                 /**
                  * fid : 1827014
                  * mid : 682508
@@ -1493,7 +1493,7 @@ public class UserInfo implements Parcelable{
              */
 
             private int count;
-            private List<ItemBeanXX> item;
+            private List<SeasonItemBean> item;
 
             protected SeasonBean(Parcel in) {
                 count = in.readInt();
@@ -1519,11 +1519,11 @@ public class UserInfo implements Parcelable{
                 this.count = count;
             }
 
-            public List<ItemBeanXX> getItem() {
+            public List<SeasonItemBean> getItem() {
                 return item;
             }
 
-            public void setItem(List<ItemBeanXX> item) {
+            public void setItem(List<SeasonItemBean> item) {
                 this.item = item;
             }
 
@@ -1537,7 +1537,7 @@ public class UserInfo implements Parcelable{
                 dest.writeInt(count);
             }
 
-            public static class ItemBeanXX {
+            public static class SeasonItemBean {
                 /**
                  * title : 第六天魔王
                  * cover : http://i0.hdslb.com/bfs/bangumi/29d001c8083a224da99b72239be5680c6ac907e7.jpg
@@ -1652,7 +1652,7 @@ public class UserInfo implements Parcelable{
              */
 
             private int count;
-            private List<ItemBeanXXX> item;
+            private List<CoinItemBean> item;
 
             protected CoinArchiveBean(Parcel in) {
                 count = in.readInt();
@@ -1678,11 +1678,11 @@ public class UserInfo implements Parcelable{
                 this.count = count;
             }
 
-            public List<ItemBeanXXX> getItem() {
+            public List<CoinItemBean> getItem() {
                 return item;
             }
 
-            public void setItem(List<ItemBeanXXX> item) {
+            public void setItem(List<CoinItemBean> item) {
                 this.item = item;
             }
 
@@ -1696,7 +1696,7 @@ public class UserInfo implements Parcelable{
                 dest.writeInt(count);
             }
 
-            public static class ItemBeanXXX {
+            public static class CoinItemBean {
                 /**
                  * title : 【凯玟桑】Arrow
                  * cover : http://i2.hdslb.com/bfs/archive/c837490efb9d702095b48c76cffd52a85a0dc9b6.png
@@ -1801,7 +1801,7 @@ public class UserInfo implements Parcelable{
              */
 
             private int count;
-            private List<ItemBeanXXXX> item;
+            private List<GameItemBean> item;
 
             protected GameBean(Parcel in) {
                 count = in.readInt();
@@ -1827,11 +1827,11 @@ public class UserInfo implements Parcelable{
                 this.count = count;
             }
 
-            public List<ItemBeanXXXX> getItem() {
+            public List<GameItemBean> getItem() {
                 return item;
             }
 
-            public void setItem(List<ItemBeanXXXX> item) {
+            public void setItem(List<GameItemBean> item) {
                 this.item = item;
             }
 
@@ -1845,7 +1845,7 @@ public class UserInfo implements Parcelable{
                 dest.writeInt(count);
             }
 
-            public static class ItemBeanXXXX {
+            public static class GameItemBean {
                 /**
                  * id : 75
                  * name : 仙剑奇侠传幻璃镜
@@ -1909,7 +1909,7 @@ public class UserInfo implements Parcelable{
              */
 
             private int count;
-            private List<ItemBeanXXXXX> item;
+            private List<CommunityItemBean> item;
 
             protected CommunityBean(Parcel in) {
                 count = in.readInt();
@@ -1935,11 +1935,11 @@ public class UserInfo implements Parcelable{
                 this.count = count;
             }
 
-            public List<ItemBeanXXXXX> getItem() {
+            public List<CommunityItemBean> getItem() {
                 return item;
             }
 
-            public void setItem(List<ItemBeanXXXXX> item) {
+            public void setItem(List<CommunityItemBean> item) {
                 this.item = item;
             }
 
@@ -1953,7 +1953,7 @@ public class UserInfo implements Parcelable{
                 dest.writeInt(count);
             }
 
-            public static class ItemBeanXXXXX {
+            public static class CommunityItemBean {
                 /**
                  * id : 863
                  * name : Minecraft

@@ -79,6 +79,7 @@ public class LivePlayerActivity extends BaseRxActivity {
     private int flag = 0;
     private boolean isPlay = false;
     private AnimationDrawable animationDrawable;
+    private boolean isExit = false;
 
     @Override
     protected int getLayoutId() {
@@ -148,11 +149,13 @@ public class LivePlayerActivity extends BaseRxActivity {
                 .subscribe(new CustomObserver<Long>() {
                     @Override
                     protected void onSuccess(Long aLong) {
-                        stopAnim();
-                        isPlay = true;
-                        videoView.setVisibility(View.VISIBLE);
-                        ivRightPlay.setImageResource(R.drawable.ic_tv_stop);
-                        ivBottomPlay.setImageResource(R.drawable.ic_portrait_stop);
+                        if (!isExit){
+                            stopAnim();
+                            isPlay = true;
+                            videoView.setVisibility(View.VISIBLE);
+                            ivRightPlay.setImageResource(R.drawable.ic_tv_stop);
+                            ivBottomPlay.setImageResource(R.drawable.ic_portrait_stop);
+                        }
                     }
 
                     @Override
@@ -272,4 +275,10 @@ public class LivePlayerActivity extends BaseRxActivity {
         ivBottomPlay.setImageResource(R.drawable.ic_portrait_play);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        isExit = true;
+        ijkMediaPlayer.release();
+    }
 }

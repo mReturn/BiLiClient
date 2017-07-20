@@ -18,8 +18,8 @@ import java.util.List;
 
 public abstract class LoadMoreRvAdapter<T> extends RecyclerView.Adapter<BaseViewHolder> {
 
-    private static final int TYPE_ITEM = 1;
-    private static final int TYPE_FOOTER = 2;
+    public static final int TYPE_ITEM = 1;
+    public static final int TYPE_FOOTER = 2;
     private static final int STATE_LOADING = -1;
     private static final int STATE_NO_FOOTER = -2;
 
@@ -76,6 +76,9 @@ public abstract class LoadMoreRvAdapter<T> extends RecyclerView.Adapter<BaseView
     }
 
     public void addFooter(){
+        if (mFooterState == STATE_LOADING){
+            return;
+        }
         FootBean footerBean = new FootBean();
         mDatas.add((T) footerBean);
         setFooterState(STATE_LOADING);

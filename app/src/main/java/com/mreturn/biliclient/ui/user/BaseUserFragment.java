@@ -25,7 +25,7 @@ public abstract class BaseUserFragment extends BaseRxLazyFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_home_content;
+        return R.layout.fragment_base_user;
     }
 
     @Override
@@ -36,6 +36,9 @@ public abstract class BaseUserFragment extends BaseRxLazyFragment {
         initRecyclerView();
     }
 
+    protected void showEmptyView() {
+        emptyView.setVisibility(View.VISIBLE);
+    }
 
 
     protected abstract void prepareData();
