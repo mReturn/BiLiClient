@@ -1,5 +1,6 @@
 package com.mreturn.biliclient.adapter.section.recommend;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.text.SpannableStringBuilder;
@@ -14,6 +15,7 @@ import com.mreturn.biliclient.R;
 import com.mreturn.biliclient.adapter.BaseViewHolder;
 import com.mreturn.biliclient.adapter.home.RecommendInfo;
 import com.mreturn.biliclient.adapter.section.base.StatelessSection;
+import com.mreturn.biliclient.ui.live.LivePlayerActivity;
 import com.mreturn.biliclient.utils.ImageLoader;
 import com.mreturn.biliclient.utils.ToastUtil;
 
@@ -113,7 +115,9 @@ public class RecommendSection extends StatelessSection {
             String gotoX = bodyBean.getGotoX();
             switch (gotoX) {
                 case TYPE_LIVE:
-                    ToastUtil.show("live");
+                    LivePlayerActivity.launch((Activity) context,
+                            Integer.valueOf(bodyBean.getParam()), bodyBean.getTitle(),
+                            bodyBean.getOnline(), bodyBean.getUpFace(), bodyBean.getUp(), 0);
                     break;
                 case GOTO_BANGUMI:
                     ToastUtil.show("bangumi");

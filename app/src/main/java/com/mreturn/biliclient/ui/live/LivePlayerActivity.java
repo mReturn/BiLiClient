@@ -1,5 +1,6 @@
 package com.mreturn.biliclient.ui.live;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
@@ -103,6 +104,17 @@ public class LivePlayerActivity extends BaseRxActivity {
         startAnim();
     }
 
+
+    public static void launch(Activity activity, int cid, String title, int online, String face, String name, int mid) {
+        Intent mIntent = new Intent(activity, LivePlayerActivity.class);
+        mIntent.putExtra(Constant.EXTRA_CID, cid);
+        mIntent.putExtra(Constant.EXTRA_TITLE, title);
+        mIntent.putExtra(Constant.EXTRA_ONLINE, online);
+        mIntent.putExtra(Constant.EXTRA_AVATAR, face);
+        mIntent.putExtra(Constant.EXTRA_NAME, name);
+        mIntent.putExtra(Constant.EXTRA_MID, mid);
+        activity.startActivity(mIntent);
+    }
     private void initPlayer() {
         holder = videoView.getHolder();
         ijkMediaPlayer = new IjkMediaPlayer();

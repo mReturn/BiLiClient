@@ -149,6 +149,7 @@ public class UserInfoActivity extends BaseRxActivity {
     }
 
     private void setUserData(UserInfo userInfo) {
+        if (userInfo.getData() == null) return;
         UserInfo.DataBean.CardBean cardBean = userInfo.getData().getCard();
         if (cardBean == null) return;
         ImageLoader.displayCircleImg(ivUserAvatar, cardBean.getFace(), R.drawable.ico_user_default);
