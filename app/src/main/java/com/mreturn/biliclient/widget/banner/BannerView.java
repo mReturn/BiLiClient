@@ -2,6 +2,7 @@ package com.mreturn.biliclient.widget.banner;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +13,8 @@ import android.widget.RelativeLayout;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.mreturn.biliclient.R;
+import com.mreturn.biliclient.ui.BrowserActivity;
 import com.mreturn.biliclient.utils.DisplayUtils;
-import com.mreturn.biliclient.utils.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -164,7 +165,6 @@ public class BannerView extends RelativeLayout
 
             }
 
-
             @Override
             public void onPageSelected(int pos) {
 
@@ -252,6 +252,9 @@ public class BannerView extends RelativeLayout
      */
     @Override
     public void onItemClick() {
-        ToastUtil.show(bannerList.get(currrentPos).getTitle());
+        if (!TextUtils.isEmpty(bannerList.get(currrentPos).getLink())){
+            BrowserActivity.launch(getContext(),bannerList.get(currrentPos).getLink(),
+                    bannerList.get(currrentPos).getTitle());
+        }
     }
 }

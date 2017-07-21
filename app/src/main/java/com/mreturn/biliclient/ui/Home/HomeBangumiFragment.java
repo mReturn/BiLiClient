@@ -4,12 +4,12 @@ import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
 
 import com.mreturn.biliclient.R;
-import com.mreturn.biliclient.adapter.section.BangumiAdBodySection;
-import com.mreturn.biliclient.adapter.section.BangumiIndexSection;
-import com.mreturn.biliclient.adapter.section.BangumiRecommendSection;
-import com.mreturn.biliclient.adapter.section.BangumiSeasonSection;
-import com.mreturn.biliclient.adapter.section.BangumiSerialSection;
-import com.mreturn.biliclient.adapter.section.RecommendBannerSection;
+import com.mreturn.biliclient.adapter.section.bangumi.BangumiAdBodySection;
+import com.mreturn.biliclient.adapter.section.bangumi.BangumiIndexSection;
+import com.mreturn.biliclient.adapter.section.bangumi.BangumiRecommendSection;
+import com.mreturn.biliclient.adapter.section.bangumi.BangumiSeasonSection;
+import com.mreturn.biliclient.adapter.section.bangumi.BangumiSerialSection;
+import com.mreturn.biliclient.adapter.section.recommend.RecommendBannerSection;
 import com.mreturn.biliclient.adapter.section.base.SectionedRecyclerViewAdapter;
 import com.mreturn.biliclient.api.CustomObserver;
 import com.mreturn.biliclient.api.RetrofitHelper;
@@ -106,7 +106,7 @@ public class HomeBangumiFragment extends BaseHomeContentFragment {
             sectionAdapter.addSection(new RecommendBannerSection(indexResultBean.getAd().getHead()));
             sectionAdapter.addSection(new BangumiIndexSection(getActivity()));
             sectionAdapter.addSection(new BangumiSerialSection(getActivity(),indexResultBean.getSerializing()));
-            if (indexResultBean.getAd().getBody() != null){
+            if (indexResultBean.getAd().getBody() != null && indexResultBean.getAd().getBody().size()>0){
                 sectionAdapter.addSection(new BangumiAdBodySection(getActivity(),indexResultBean.getAd().getBody()));
             }
             sectionAdapter.addSection(new BangumiSeasonSection(getActivity(),

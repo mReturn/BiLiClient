@@ -27,7 +27,6 @@ import com.mreturn.biliclient.event.AppBarStateChangeEvent;
 import com.mreturn.biliclient.ui.base.BaseRxActivity;
 import com.mreturn.biliclient.utils.ImageLoader;
 import com.mreturn.biliclient.utils.MyLog;
-import com.mreturn.biliclient.utils.SystemBarHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,8 +92,7 @@ public class UserInfoActivity extends BaseRxActivity {
         if (intent != null) {
             mid = intent.getIntExtra(Constant.EXTRA_MID, -1);
         }
-        mid = 682508;
-
+//        mid = 682508;
         getUserIfo();
     }
 
@@ -107,8 +105,8 @@ public class UserInfoActivity extends BaseRxActivity {
         }
 
         //StatusBar 透明
-        SystemBarHelper.immersiveStatusBar(this);
-        SystemBarHelper.setHeightAndPadding(this, toolbar);
+//        SystemBarHelper.immersiveStatusBar(this);
+//        SystemBarHelper.setHeightAndPadding(this, toolbar);
         //AppBar状态监听
         appBarLayout.addOnOffsetChangedListener(new AppBarStateChangeEvent() {
             @Override
@@ -222,6 +220,7 @@ public class UserInfoActivity extends BaseRxActivity {
     }
 
     private void intViewPager(UserInfo userInfo) {
+        fragments.add(UserHomeFragment.newInstance(userInfo));
         fragments.add(UserArchiveFragment.newInstance(userInfo.getData().getArchive(), mid));
         fragments.add(UserFavouriteFragment.newInstance(userInfo.getData().getFavourite()));
         fragments.add(UserSeasonFragment.newInstance(userInfo.getData().getSeason(), mid));
@@ -275,7 +274,7 @@ public class UserInfoActivity extends BaseRxActivity {
         if (userData.getGame() != null && userData.getGame().getCount() > 0) {
             gameStr = gameStr + userData.getGame().getCount();
         }
-       titles = new String[]{archiveStr,favouriteStr,seaonStr,communityStr,coinStr,gameStr};
+       titles = new String[]{homeStr,archiveStr,favouriteStr,seaonStr,communityStr,coinStr,gameStr};
         slidingTabs.setViewPager(viewPager,titles);
         viewPager.setCurrentItem(0);
         setSlidingTabIndicatorWidth(0);
@@ -299,5 +298,10 @@ public class UserInfoActivity extends BaseRxActivity {
             onBackPressed();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void switchPage(int index){
+        viewPager.setCurrentItem(index);
+//        appBarLayout.setExpanded(false);
     }
 }

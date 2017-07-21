@@ -34,6 +34,10 @@ public class SectionedRecyclerViewAdapter extends RecyclerView.Adapter<BaseViewH
     private int viewTypeCount = 0;
     private final static int VIEW_TYPE_QTY = 5;
 
+    public int getSectionsCount() {
+        return sections.size();
+    }
+
     public SectionedRecyclerViewAdapter() {
         sections = new LinkedHashMap<>();
         sectionViewTypeNumbers = new HashMap<>();

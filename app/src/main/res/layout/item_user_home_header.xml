@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/contribute_layout"
+                android:id="@+id/root_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/default_general_margin">
+                android:layout_marginLeft="@dimen/default_general_margin"
+                android:layout_marginRight="@dimen/default_general_margin"
+                android:layout_marginTop="@dimen/default_general_margin"
+    >
 
     <TextView
         android:id="@+id/tv_title"

@@ -39,6 +39,8 @@ public class UserCommunityFragment extends BaseUserFragment {
         UserInfo.DataBean.CommunityBean communityBean = getArguments().getParcelable(Constant.EXTRA_DATA);
         if (communityBean != null && communityBean.getCount()>0){
             communityList.addAll(communityBean.getItem());
+        }else {
+            showEmptyView();
         }
 
     }

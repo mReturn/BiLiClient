@@ -1,4 +1,4 @@
-package com.mreturn.biliclient.adapter.section;
+package com.mreturn.biliclient.adapter.section.recommend;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;

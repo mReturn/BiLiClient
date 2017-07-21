@@ -39,6 +39,9 @@ public abstract class BaseUserFragment extends BaseRxLazyFragment {
     protected void showEmptyView() {
         emptyView.setVisibility(View.VISIBLE);
     }
+    protected void hideEmptyView() {
+        emptyView.setVisibility(View.GONE);
+    }
 
 
     protected abstract void prepareData();

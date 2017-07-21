@@ -75,6 +75,8 @@
                     android:layout_marginLeft="4dp"
                     android:textColor="@color/black_alpha_45"
                     android:textSize="12sp"
+                    android:layout_toLeftOf="@+id/tv_live_count"
+                    android:singleLine="true"
                     />
 
                 <TextView

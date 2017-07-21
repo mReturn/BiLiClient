@@ -86,7 +86,7 @@ public abstract class BaseRxActivity extends RxAppCompatActivity implements Them
     //获取界面布局id
     protected abstract int getLayoutId();
 
-    protected abstract void initToolBar();
-
     protected abstract void initView(Bundle savedInstanceState);
+
+    protected abstract void initToolBar();
 }

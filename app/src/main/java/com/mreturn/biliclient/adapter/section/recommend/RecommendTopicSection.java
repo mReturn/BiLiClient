@@ -1,4 +1,4 @@
-package com.mreturn.biliclient.adapter.section;
+package com.mreturn.biliclient.adapter.section.recommend;
 
 import com.mreturn.biliclient.R;
 import com.mreturn.biliclient.adapter.BaseViewHolder;

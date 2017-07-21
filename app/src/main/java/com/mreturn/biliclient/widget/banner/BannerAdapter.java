@@ -31,8 +31,12 @@ public class BannerAdapter extends PagerAdapter {
 
   @Override
   public int getCount() {
-
-    return Integer.MAX_VALUE;
+//    return mList.size()
+    if (mList.size()>1){
+      return Integer.MAX_VALUE;
+    }else {
+      return mList.size();
+    }
   }
 
 
