@@ -257,6 +257,7 @@ public class LivePlayerActivity extends BaseRxActivity {
 
     @OnClick(R.id.iv_avatar)
     void toUserInfoAct(){
+        if (mid == 0) return;
         Intent intent = new Intent(this,UserInfoActivity.class);
         intent.putExtra(Constant.EXTRA_MID,mid);
         intent.putExtra(Constant.EXTRA_NAME,name);

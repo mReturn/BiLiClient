@@ -2,27 +2,34 @@ package com.mreturn.biliclient.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class CommonFragmentPagerAdapter extends FragmentPagerAdapter {
-    ArrayList<Fragment> list;
+/**
+ * Created by mReturn
+ * on 2017/7/5.
+ */
 
-    public CommonFragmentPagerAdapter(FragmentManager fm, ArrayList<Fragment> list) {
+public class CommonFragmentPagerAdapter extends android.support.v4.app.FragmentPagerAdapter {
+
+
+    private List<Fragment> fragments;
+
+    public CommonFragmentPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
         super(fm);
-        this.list = list;
+        this.fragments = fragments;
 
+    }
+
+
+    @Override
+    public Fragment getItem(int position) {
+        return fragments.get(position);
     }
 
     @Override
     public int getCount() {
-        return list.size();
-    }
-
-    @Override
-    public Fragment getItem(int arg0) {
-        return list.get(arg0);
+        return fragments.size();
     }
 
 }

@@ -5,6 +5,7 @@ import com.mreturn.biliclient.adapter.home.RecommendInfo;
 import com.mreturn.biliclient.bean.UserArchiveInfo;
 import com.mreturn.biliclient.bean.UserInfo;
 import com.mreturn.biliclient.bean.UserSeasonInfo;
+import com.mreturn.biliclient.bean.VideoDetailsInfo;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -48,4 +49,11 @@ public interface AppService {
     @GET("/x/v2/space/bangumi?access_key=&appkey=1d8b6e7d45233436&build=506000" +
             "&mobi_app=android&platform=android&ps=10")
     Observable<UserSeasonInfo> getSeason(@Query("pn") int pageNum, @Query("vmid") int vmid);
+
+    /**
+     * 视频详情数据
+     */
+    @GET(
+            "x/view?access_key=19946e1ef3b5cad1a756c475a67185bb&actionKey=appkey&appkey=27eb53fc9058f8c3&build=3940&device=phone&mobi_app=iphone&platform=ios&sign=1206255541e2648c1badb87812458046&ts=1478349831")
+    Observable<VideoDetailsInfo> getVideoDetails(@Query("aid") int aid);
 }

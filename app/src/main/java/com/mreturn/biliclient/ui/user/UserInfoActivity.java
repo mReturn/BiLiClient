@@ -79,7 +79,7 @@ public class UserInfoActivity extends BaseRxActivity {
     private int mid;
     private String name;
     private List<Fragment> fragments = new ArrayList<>();
-    String [] titles;
+    String[] titles;
 
     @Override
     protected int getLayoutId() {
@@ -149,9 +149,11 @@ public class UserInfoActivity extends BaseRxActivity {
     }
 
     private void setUserData(UserInfo userInfo) {
-        if (userInfo.getData() == null) return;
+        if (userInfo.getData() == null)
+            return;
         UserInfo.DataBean.CardBean cardBean = userInfo.getData().getCard();
-        if (cardBean == null) return;
+        if (cardBean == null)
+            return;
         ImageLoader.displayCircleImg(ivUserAvatar, cardBean.getFace(), R.drawable.ico_user_default);
         name = cardBean.getName();
         tvUserName.setText(name);
@@ -275,20 +277,20 @@ public class UserInfoActivity extends BaseRxActivity {
         if (userData.getGame() != null && userData.getGame().getCount() > 0) {
             gameStr = gameStr + userData.getGame().getCount();
         }
-       titles = new String[]{homeStr,archiveStr,favouriteStr,seaonStr,communityStr,coinStr,gameStr};
-        slidingTabs.setViewPager(viewPager,titles);
+        titles = new String[]{homeStr, archiveStr, favouriteStr, seaonStr, communityStr, coinStr, gameStr};
+        slidingTabs.setViewPager(viewPager, titles);
         viewPager.setCurrentItem(0);
         setSlidingTabIndicatorWidth(0);
     }
 
     private void setSlidingTabIndicatorWidth(int pos) {
-        if (titles != null && titles.length>pos){
+        if (titles != null && titles.length > pos) {
             String title = titles[pos];
             TextView tv = slidingTabs.getTitleView(pos);
             TextPaint paint = tv.getPaint();
             float textWidth = paint.measureText(title);
-            MyLog.e("text width: ",textWidth+"");
-            slidingTabs.setIndicatorWidth(textWidth/2);
+            MyLog.e("text width: ", textWidth + "");
+            slidingTabs.setIndicatorWidth(textWidth / 2);
         }
     }
 
@@ -301,7 +303,7 @@ public class UserInfoActivity extends BaseRxActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void switchPage(int index){
+    public void switchPage(int index) {
         viewPager.setCurrentItem(index);
 //        appBarLayout.setExpanded(false);
     }

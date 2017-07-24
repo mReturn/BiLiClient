@@ -52,6 +52,10 @@ public class RetrofitHelper {
         return creatApi(SearchService.class,Constant.SEARCH_BASE_URL);
 
     }
+    public static SearchService getApi(){
+        return creatApi(SearchService.class,Constant.API_BASE_URL);
+
+    }
 
 
     /**

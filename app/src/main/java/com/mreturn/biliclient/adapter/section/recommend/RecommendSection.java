@@ -16,6 +16,7 @@ import com.mreturn.biliclient.adapter.BaseViewHolder;
 import com.mreturn.biliclient.adapter.home.RecommendInfo;
 import com.mreturn.biliclient.adapter.section.base.StatelessSection;
 import com.mreturn.biliclient.ui.live.LivePlayerActivity;
+import com.mreturn.biliclient.ui.video.VideoDetailActivity;
 import com.mreturn.biliclient.utils.ImageLoader;
 import com.mreturn.biliclient.utils.ToastUtil;
 
@@ -126,7 +127,8 @@ public class RecommendSection extends StatelessSection {
 //                    ToastUtil.show("activity");
 //                    break;
                 default:
-                    ToastUtil.show("video");
+                    VideoDetailActivity.launch(context,Integer.parseInt(bodyBean.getParam()),
+                            bodyBean.getCover());
                     break;
             }
         });
