@@ -7,6 +7,7 @@ import com.mreturn.biliclient.adapter.BaseViewHolder;
 import com.mreturn.biliclient.adapter.section.base.StatelessSection;
 import com.mreturn.biliclient.bean.UserInfo;
 import com.mreturn.biliclient.ui.user.UserInfoActivity;
+import com.mreturn.biliclient.ui.video.VideoDetailActivity;
 import com.mreturn.biliclient.utils.ImageLoader;
 
 import java.util.List;
@@ -113,6 +114,9 @@ public class UserHomeSection<T> extends StatelessSection {
                 holder.setText(R.id.tv_title, archiveItemBean.getTitle());
                 holder.setText(R.id.tv_play, archiveItemBean.getPlay() + "");
                 holder.setText(R.id.tv_danmaku, archiveItemBean.getDanmaku() + "");
+                holder.setClickListener(R.id.card_view,v ->
+                    VideoDetailActivity.launch(context,Integer.parseInt(archiveItemBean.getParam()),archiveItemBean.getCover())
+                );
                 break;
             case TYPE_FAVOURITE:
                 UserInfo.DataBean.FavouriteBean.FavouriteItemBean favouriteItemBean =
@@ -167,6 +171,9 @@ public class UserHomeSection<T> extends StatelessSection {
                 holder.setText(R.id.tv_title, coinItemBean.getTitle());
                 holder.setText(R.id.tv_play, coinItemBean.getPlay() + "");
                 holder.setText(R.id.tv_danmaku, coinItemBean.getDanmaku() + "");
+                holder.setClickListener(R.id.card_view,v ->
+                        VideoDetailActivity.launch(context,Integer.parseInt(coinItemBean.getParam()),coinItemBean.getCover())
+                );
                 break;
             case TYPE_GAME:
                 UserInfo.DataBean.GameBean.GameItemBean item =

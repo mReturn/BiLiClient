@@ -86,6 +86,7 @@ public abstract class LoadMoreRvAdapter<T> extends RecyclerView.Adapter<BaseView
     }
 
     public void removeFooter(){
+        if (mDatas.size()<1) return;
         int lastPos = mDatas.size()-1;
         int type = getItemViewType(lastPos);
         if (type == TYPE_FOOTER){

@@ -42,14 +42,14 @@
         <activity
             android:name=".ui.video.VideoDetailActivity"
             android:screenOrientation="portrait" />
-        <!--<activity android:name=".ui.video.VideoDetailActivity"-->
-                  <!--android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"-->
-                  <!--android:exported="false"-->
-                  <!--android:launchMode="singleTop"-->
-                  <!--android:screenOrientation="landscape"-->
-                  <!--android:theme="@style/ColorTranslucentTheme"-->
-                  <!--android:windowSoftInputMode="stateAlwaysHidden"-->
-            <!--/>-->
+        <activity android:name=".ui.video.VideoPlayActivity"
+                  android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
+                  android:exported="false"
+                  android:launchMode="singleTop"
+                  android:screenOrientation="landscape"
+                  android:theme="@style/ColorTranslucentTheme"
+                  android:windowSoftInputMode="stateAlwaysHidden"
+            />
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.mreturn.biliclient.api;
 
 import com.facebook.stetho.okhttp3.StethoInterceptor;
+import com.mreturn.biliclient.api.service.ApiService;
 import com.mreturn.biliclient.api.service.AppService;
 import com.mreturn.biliclient.api.service.BangumiService;
 import com.mreturn.biliclient.api.service.LiveService;
@@ -52,8 +53,8 @@ public class RetrofitHelper {
         return creatApi(SearchService.class,Constant.SEARCH_BASE_URL);
 
     }
-    public static SearchService getApi(){
-        return creatApi(SearchService.class,Constant.API_BASE_URL);
+    public static ApiService getApi(){
+        return creatApi(ApiService.class,Constant.API_BASE_URL);
 
     }
 
@@ -71,7 +72,7 @@ public class RetrofitHelper {
                     Cache cache = new Cache(new File(BiLiApplication.getInstance().getCacheDir(),
                             "HttpCache"), 1024 * 1024 * 10);
                     mokHttpClient = new OkHttpClient.Builder()
-                            .cache(cache)
+//                            .cache(cache)
                             .addInterceptor(interceptor)
 //                            .addNetworkInterceptor(new CacheInterceptor())
                             .addNetworkInterceptor(new StethoInterceptor())

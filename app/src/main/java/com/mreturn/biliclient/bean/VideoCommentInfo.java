@@ -26,7 +26,7 @@ public class VideoCommentInfo {
     private int isAdmin;
     private boolean needCode;
     private int owner;
-    private List<HotListBean> hotList;
+    private List<ListBean> hotList;
     private List<ListBean> list;
 
     public int getResults() {
@@ -77,11 +77,11 @@ public class VideoCommentInfo {
         this.owner = owner;
     }
 
-    public List<HotListBean> getHotList() {
+    public List<ListBean> getHotList() {
         return hotList;
     }
 
-    public void setHotList(List<HotListBean> hotList) {
+    public void setHotList(List<ListBean> hotList) {
         this.hotList = hotList;
     }
 
@@ -93,24 +93,29 @@ public class VideoCommentInfo {
         this.list = list;
     }
 
-    public static class HotListBean {
+    public static class ListBean {
         /**
-         * mid : 32561839
-         * lv : 163
-         * fbid : 343049269
+         * mid : 660029
+         * lv : 1653
+         * fbid : 347130033
          * ad_check : 0
-         * good : 791
+         * good : 0
          * isgood : 0
-         * msg : 要是八爷写萌曲才吓人呢
+         * msg : 7月24日 17:30
+         我就睡了一会就58w了……
+         再生：581,673
+         コメ：16,192
+         マイ：41,722
          * device :
-         * create : 1500627589
-         * create_at : 2017-07-21 16:59
-         * reply_count : 41
-         * face : http://i0.hdslb.com/bfs/face/4812c55f98976a5e98ca3816f080bf34ab5fb8c0.jpg_52x52.jpg
+         * create : 1500888750
+         * create_at : 2017-07-24 17:32
+         * reply_count : 0
+         * face : http://i1.hdslb.com/bfs/face/e5d961428c047056c4fefdd199c0b8eb01435a3e.jpg_52x52.jpg
          * rank : 0
-         * nick : 猴猴猴看
-         * level_info : {"current_exp":5618,"current_level":4,"current_min":4500,"next_exp":10800}
-         * sex : 女
+         * nick : RaDQ
+         * level_info : {"current_exp":14489,"current_level":5,"current_min":10800,"next_exp":28800}
+         * sex : 保密
+         * reply : null
          */
 
         private int mid;
@@ -129,6 +134,7 @@ public class VideoCommentInfo {
         private String nick;
         private LevelInfoBean level_info;
         private String sex;
+//        private List<ListBean> reply;
 
         public int getMid() {
             return mid;
@@ -258,233 +264,15 @@ public class VideoCommentInfo {
             this.sex = sex;
         }
 
+//        public Object getReply() {
+//            return reply;
+//        }
+//
+//        public void setReply(List<ListBean> reply) {
+//            this.reply = reply;
+//        }
+
         public static class LevelInfoBean {
-            /**
-             * current_exp : 5618
-             * current_level : 4
-             * current_min : 4500
-             * next_exp : 10800
-             */
-
-            private int current_exp;
-            private int current_level;
-            private int current_min;
-            private int next_exp;
-
-            public int getCurrent_exp() {
-                return current_exp;
-            }
-
-            public void setCurrent_exp(int current_exp) {
-                this.current_exp = current_exp;
-            }
-
-            public int getCurrent_level() {
-                return current_level;
-            }
-
-            public void setCurrent_level(int current_level) {
-                this.current_level = current_level;
-            }
-
-            public int getCurrent_min() {
-                return current_min;
-            }
-
-            public void setCurrent_min(int current_min) {
-                this.current_min = current_min;
-            }
-
-            public int getNext_exp() {
-                return next_exp;
-            }
-
-            public void setNext_exp(int next_exp) {
-                this.next_exp = next_exp;
-            }
-        }
-    }
-
-    public static class ListBean {
-        /**
-         * mid : 660029
-         * lv : 1653
-         * fbid : 347130033
-         * ad_check : 0
-         * good : 0
-         * isgood : 0
-         * msg : 7月24日 17:30
-         我就睡了一会就58w了……
-         再生：581,673
-         コメ：16,192
-         マイ：41,722
-         * device :
-         * create : 1500888750
-         * create_at : 2017-07-24 17:32
-         * reply_count : 0
-         * face : http://i1.hdslb.com/bfs/face/e5d961428c047056c4fefdd199c0b8eb01435a3e.jpg_52x52.jpg
-         * rank : 0
-         * nick : RaDQ
-         * level_info : {"current_exp":14489,"current_level":5,"current_min":10800,"next_exp":28800}
-         * sex : 保密
-         * reply : null
-         */
-
-        private int mid;
-        private int lv;
-        private String fbid;
-        private int ad_check;
-        private int good;
-        private int isgood;
-        private String msg;
-        private String device;
-        private int create;
-        private String create_at;
-        private int reply_count;
-        private String face;
-        private int rank;
-        private String nick;
-        private LevelInfoBeanX level_info;
-        private String sex;
-        private Object reply;
-
-        public int getMid() {
-            return mid;
-        }
-
-        public void setMid(int mid) {
-            this.mid = mid;
-        }
-
-        public int getLv() {
-            return lv;
-        }
-
-        public void setLv(int lv) {
-            this.lv = lv;
-        }
-
-        public String getFbid() {
-            return fbid;
-        }
-
-        public void setFbid(String fbid) {
-            this.fbid = fbid;
-        }
-
-        public int getAd_check() {
-            return ad_check;
-        }
-
-        public void setAd_check(int ad_check) {
-            this.ad_check = ad_check;
-        }
-
-        public int getGood() {
-            return good;
-        }
-
-        public void setGood(int good) {
-            this.good = good;
-        }
-
-        public int getIsgood() {
-            return isgood;
-        }
-
-        public void setIsgood(int isgood) {
-            this.isgood = isgood;
-        }
-
-        public String getMsg() {
-            return msg;
-        }
-
-        public void setMsg(String msg) {
-            this.msg = msg;
-        }
-
-        public String getDevice() {
-            return device;
-        }
-
-        public void setDevice(String device) {
-            this.device = device;
-        }
-
-        public int getCreate() {
-            return create;
-        }
-
-        public void setCreate(int create) {
-            this.create = create;
-        }
-
-        public String getCreate_at() {
-            return create_at;
-        }
-
-        public void setCreate_at(String create_at) {
-            this.create_at = create_at;
-        }
-
-        public int getReply_count() {
-            return reply_count;
-        }
-
-        public void setReply_count(int reply_count) {
-            this.reply_count = reply_count;
-        }
-
-        public String getFace() {
-            return face;
-        }
-
-        public void setFace(String face) {
-            this.face = face;
-        }
-
-        public int getRank() {
-            return rank;
-        }
-
-        public void setRank(int rank) {
-            this.rank = rank;
-        }
-
-        public String getNick() {
-            return nick;
-        }
-
-        public void setNick(String nick) {
-            this.nick = nick;
-        }
-
-        public LevelInfoBeanX getLevel_info() {
-            return level_info;
-        }
-
-        public void setLevel_info(LevelInfoBeanX level_info) {
-            this.level_info = level_info;
-        }
-
-        public String getSex() {
-            return sex;
-        }
-
-        public void setSex(String sex) {
-            this.sex = sex;
-        }
-
-        public Object getReply() {
-            return reply;
-        }
-
-        public void setReply(Object reply) {
-            this.reply = reply;
-        }
-
-        public static class LevelInfoBeanX {
             /**
              * current_exp : 14489
              * current_level : 5

@@ -9,6 +9,7 @@ import com.mreturn.biliclient.adapter.LoadMoreRvAdapter;
 import com.mreturn.biliclient.adapter.helper.CustomerOnScrollListener;
 import com.mreturn.biliclient.app.Constant;
 import com.mreturn.biliclient.bean.UserInfo;
+import com.mreturn.biliclient.ui.video.VideoDetailActivity;
 import com.mreturn.biliclient.utils.ImageLoader;
 
 import java.util.ArrayList;
@@ -78,9 +79,8 @@ public class UserCoinFragment extends BaseUserFragment {
                     holder.setText(R.id.tv_title, item.getTitle());
                     holder.setText(R.id.tv_play, item.getPlay() + "");
                     holder.setText(R.id.tv_danmaku, item.getDanmaku() + "");
-                    holder.setClickListener(R.id.root_view,v -> {
-                        //TODO click
-                    });
+                    holder.setClickListener(R.id.root_view, v ->
+                            VideoDetailActivity.launch(getContext(), Integer.parseInt(item.getParam()), item.getCover()));
                 }
             };
             mRecycleView.setAdapter(adapter);

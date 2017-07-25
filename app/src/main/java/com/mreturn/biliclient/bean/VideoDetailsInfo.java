@@ -904,17 +904,17 @@ public class VideoDetailsInfo {
              * title : 【GUMI /  Gero】┗|∵|┓弱者的宣言【HoneyWorks】
              */
 
-            private double aid;
+            private int aid;
             private OwnerBeanX owner;
             private String pic;
             private StatBeanX stat;
             private String title;
 
-            public double getAid() {
+            public int getAid() {
                 return aid;
             }
 
-            public void setAid(double aid) {
+            public void setAid(int aid) {
                 this.aid = aid;
             }
 

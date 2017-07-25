@@ -1,5 +1,6 @@
 package com.mreturn.biliclient.ui.user;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
@@ -84,6 +85,12 @@ public class UserInfoActivity extends BaseRxActivity {
     @Override
     protected int getLayoutId() {
         return R.layout.activity_user_info;
+    }
+
+    public static void launch(Context context, int mid){
+        Intent intent = new Intent(context,UserInfoActivity.class);
+        intent.putExtra(Constant.EXTRA_MID,mid);
+        context.startActivity(intent);
     }
 
     @Override
